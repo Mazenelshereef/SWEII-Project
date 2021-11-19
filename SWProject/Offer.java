@@ -1,5 +1,5 @@
 package SWProject;
 
-public class Offer {
+public class Offer implements IOffer {
 
 }

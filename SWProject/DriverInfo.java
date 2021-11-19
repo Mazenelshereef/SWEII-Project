@@ -1,5 +1,5 @@
 package SWProject;
 
-public class DriverInfo {
+public class DriverInfo extends UserInfo {
 
 }
