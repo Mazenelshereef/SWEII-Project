@@ -1,5 +1,5 @@
 package SWProject;
 
-public class PassengerInfo {
+public class PassengerInfo extends UserInfo {
 
 }
