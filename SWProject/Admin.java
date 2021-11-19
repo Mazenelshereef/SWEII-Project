@@ -30,8 +30,8 @@ public class Admin implements IAdmin {
         
         @Override
         public void listPendingRegistrations(){
-            for(int i=0; i<= SystemData.getInstance().getRequests().size(); i++){
-                System.out.println(i+1 +":"+ SystemData.getInstance().getRequests().get(i));
+            for(int i=0; i<= SystemData.getInstance().getRegistrations().size(); i++){
+                System.out.println(i+1 +":"+ SystemData.getInstance().getRegistrations().get(i));
             }
         }
 

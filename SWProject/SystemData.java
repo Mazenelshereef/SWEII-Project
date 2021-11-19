@@ -23,13 +23,13 @@ public class SystemData implements ISystemData {
     }
 
     @Override
-    public boolean registerPassenger(UserInfo info){
+    public boolean registerPassenger(PassengerInfo info){
         passengers.add(new Passenger(/*info*/));
         return true;
     }
     
     @Override
-    public boolean registerDriver(UserInfo info){
+    public boolean registerDriver(DriverInfo info){
         registrations.add(new Registration(info));
         return true;
     }
@@ -53,8 +53,43 @@ public class SystemData implements ISystemData {
     }
 
     @Override
-    public ArrayList<IRegistration> getRequests() {
+    public ArrayList<IRegistration> getRegistrations() {
         return registrations;
+    }
+
+    @Override
+    public ArrayList<IDriver> getDrivers() {
+        return drivers;
+    }
+
+    @Override
+    public ArrayList<IPassenger> getPassengers() {
+        return passengers;
+    }
+
+    @Override
+    public IAdmin loginIAdmin(String username, String password) {
+        if (admin.getUsername().equals(username) && admin.getPassword().equals(password))
+            return admin;
+        return null;
+    }
+
+    @Override
+    public IDriver loginIDriver(String username, String password) {
+        for (IDriver driver : drivers){
+            if (driver.getPersonalInfo().getUsername().equals(username) && driver.getPersonalInfo().getPassword().equals(password))
+                return driver;
+        }
+        return null;
+    }
+
+    @Override
+    public IPassenger loginIPassenger(String username, String password) {
+        for (IPassenger passenger : passengers){
+            if (passenger.getPersonalInfo().getUsername().equals(username) && passenger.getPersonalInfo().getPassword().equals(password))
+                return passenger;
+        }
+        return null;
     }
     
 }

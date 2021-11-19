@@ -4,7 +4,7 @@ public class Registration implements IRegistration {
 	private UserInfo userInfo;
     private boolean isAccepted;
 
-    public Registration(UserInfo info){
+    public Registration(DriverInfo info){
         userInfo = new DriverInfo(info);
     }
 

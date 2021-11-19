@@ -2,8 +2,8 @@ package SWProject;
 
 public abstract class UserInfo {
 
-        private String username, mobileNumber, email, password;
-        private boolean isSuspended;
+        protected String username, mobileNumber, email, password;
+        protected boolean isSuspended;
 
         public void setEmail(String email) {
             this.email = email;

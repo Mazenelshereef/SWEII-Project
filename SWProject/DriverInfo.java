@@ -1,15 +1,24 @@
 package SWProject;
 
-public class DriverInfo extends UserInfo {
+public class DriverInfo extends UserInfo implements IDriverInfo {
         private String licenseId, nationalId;
-        
-        public DriverInfo(String _licenseId, String _nationalId){
-            this.licenseId = _licenseId;
-            this.nationalId = _nationalId;
+
+        public DriverInfo(DriverInfo obj){
+            this.username = obj.username;
+            this.password = obj.password;
+            this.email = obj.email;
+            this.mobileNumber = obj.mobileNumber;
+            this.isSuspended = obj.isSuspended;
+            this.licenseId = obj.licenseId;
+            this.nationalId = obj.nationalId;
         }
 
-        public DriverInfo(UserInfo obj){
-            //copy data
+        public void setLicenseId(String licenseId) {
+            this.licenseId = licenseId;
+        }
+
+        public void setNationalId(String nationalId) {
+            this.nationalId = nationalId;
         }
 
         public String getLicenseId() {
