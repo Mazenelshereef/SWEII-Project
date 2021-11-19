@@ -5,12 +5,9 @@ public class Registration implements IRegistration {
     private boolean isAccepted;
 
     public Registration(UserInfo info){
-        userInfo = new DriverInfo(/*info*/);
+        userInfo = new DriverInfo(info);
     }
-    
-    public UserInfo getUserInfo(){
-        return userInfo;
-    }
+
     @Override
     public String toString() {
         return "Registration info:";
@@ -19,6 +16,11 @@ public class Registration implements IRegistration {
     @Override
     public void setUserInfo(UserInfo info) {
         userInfo = info;
+    }
+
+    @Override
+    public UserInfo getUserInfo(){
+        return userInfo;
     }
 
     @Override
@@ -33,3 +35,4 @@ public class Registration implements IRegistration {
     }
 
 }
+

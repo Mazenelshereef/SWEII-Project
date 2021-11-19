@@ -13,7 +13,7 @@ public class SystemData implements ISystemData {
         passengers = new ArrayList<IPassenger>();
         drivers = new ArrayList<IDriver>();
         registrations = new ArrayList<IRegistration>();
-        admin = new Admin(/*"", ""*/);
+        admin = new Admin("admin", "0000");
     }
 
     public static SystemData getInstance(){
@@ -50,6 +50,11 @@ public class SystemData implements ISystemData {
         if (isAccepted)
             drivers.add(new Driver(/*registration.getUserInfo()*/));
         registrations.remove(registration);
+    }
+
+    @Override
+    public ArrayList<IRegistration> getRequests() {
+        return registrations;
     }
     
 }
