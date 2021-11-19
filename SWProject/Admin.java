@@ -1,5 +1,5 @@
 package SWProject;
 
-public class Admin {
+public class Admin implements IAdmin {
 
 }

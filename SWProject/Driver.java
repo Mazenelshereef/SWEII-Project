@@ -1,5 +1,5 @@
 package SWProject;
 
-public class Driver {
+public class Driver implements IDriver{
 
 }
