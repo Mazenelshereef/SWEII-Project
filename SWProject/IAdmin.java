@@ -1,13 +1,13 @@
 package SWProject;
 
 public interface IAdmin {
-    public  String setUsername();
+    public  void setUsername(String username);
     public  String getUsername();
-    public String setPassword();
+    public void setPassword(String password);
     public String getPassword();
-    void verifyDriverRegistration(IRegistration request);
-    IRegistration listPendingRegistrations();
-    void denyDriverRegistration(IRegistration request);
-    void suspendUser(UserInfo user);
-    void unsuspendUser(UserInfo user);
+    public void verifyDriverRegistration(IRegistration request);
+    public void denyDriverRegistration(IRegistration request);
+    public void suspendUser(IUser user);
+    public void unsuspendUser(IUser user);
+    public void listPendingRegistrations();
 }

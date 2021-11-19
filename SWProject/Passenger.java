@@ -1,5 +1,5 @@
 package SWProject;
 
-public class Passenger implements IPassenger {
+public class Passenger implements IPassenger, IUser {
 
 }

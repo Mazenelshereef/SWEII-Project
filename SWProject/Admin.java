@@ -1,39 +1,56 @@
 package SWProject;
 
-import java.util.ArrayList;
-
 public class Admin implements IAdmin {
-        ISystemData sys;
         String username, password;
+
         Admin(String username , String password) {
             this.username = username;
             this.password = password;
         }
 
+        @Override
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        @Override
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        @Override
         public  String getUsername() {
             return username;
         }
 
+        @Override
         public String getPassword() {
             return password;
         }
-        void listPendingRegistrations(){
-            for(int i=0; i<= sys.getRequests().size(); i++){
-                System.out.println(i+1 +":"+ sys.getRequests().get(i));
+        
+        @Override
+        public void listPendingRegistrations(){
+            for(int i=0; i<= SystemData.getInstance().getRequests().size(); i++){
+                System.out.println(i+1 +":"+ SystemData.getInstance().getRequests().get(i));
             }
+        }
 
+        @Override
+        public void verifyDriverRegistration(IRegistration request){
+            SystemData.getInstance().recieveRequestResponce(request, true);
         }
-        void verifyDriverRegistration(IRegistration request){
-            sys.addDriver(request.getDriver());
-        }
-        void denyDriverRegistration(IRegistration request){
-            sys.removeDriver(request.getDriver());
-        }
-        void suspendUser(UserInfo user){
+
+        @Override
+        public void denyDriverRegistration(IRegistration request){
+            SystemData.getInstance().recieveRequestResponce(request, false);        }
+
+        @Override
+        public void suspendUser(IUser user){
             user.setSuspended(true);
         }
-        void unsuspendUser(UserInfo user){
+        
+        @Override
+        public void unsuspendUser(IUser user){
             user.setSuspended(false);
         }
-
 }
