@@ -1,5 +1,5 @@
 package SWProject;
 
-public class Ride {
+public class Ride implements IRide {
 
 }
