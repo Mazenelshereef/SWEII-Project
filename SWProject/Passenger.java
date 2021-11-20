@@ -4,70 +4,70 @@ import java.util.ArrayList;
 
 public class Passenger implements IPassenger, IUser {
     private UserInfo personalInfo;
-    private  ArrayList<IOffer> recievedOffers;
+    private ArrayList<IOffer> recievedOffers;
+    private ArrayList<IRide> myRides;
 
-    public Passenger(UserInfo personalInfo, ArrayList<IOffer> recievedOffers) {
+    public Passenger(UserInfo personalInfo) {
         this.personalInfo = personalInfo;
-        this.recievedOffers = recievedOffers;
     }
 
     public void setPersonalInfo(UserInfo personalInfo) {
         this.personalInfo = personalInfo;
     }
 
+    public UserInfo getPersonalInfo() {
+        return personalInfo;
+    }
+
     public ArrayList<IOffer> getRecievedOffers() {
         return recievedOffers;
     }
 
-    public void setRecievedOffers(ArrayList<IOffer> recievedOffers) {
-        this.recievedOffers = recievedOffers;
+    public ArrayList<IRide> getMyRides() {
+        return myRides;
     }
 
-    public UserInfo getPersonalInfo() {
-        return personalInfo;
+    public void requestRide(String source, String distenation) {
+        IRide ride = new Ride(source, distenation, this);
+        myRides.add(ride);
+        //notify drivers that a ride is requested with source from their favourite areas
+        SystemData.getInstance().notifyDrivers(ride);
     }
-    public void requestRide(String s,String d)
-      {
-        IRide ride=new Ride(s,d);
-      }
 
-    public double checkDriverRating(IDriver driver)
-    {
+    public double checkDriverRating(IDriver driver) {
         return driver.getAverageRate();
-
     }
 
-    public  void recieveOffer(IOffer offer)
-    {
+    public void recieveOffer(IOffer offer) {
         recievedOffers.add(offer);
     }
 
-    public  void acceptOffer(IOffer offer)
-    {
+    public void acceptOffer(IOffer offer) {
         offer.setisAccepted(true);
+        recievedOffers.remove(offer);
     }
 
-    public  void denyOffer(IOffer offer)
-    {
+    public void denyOffer(IOffer offer) {
         offer.setisAccepted(false);
+        recievedOffers.remove(offer);
     }
 
-    public void checkOffers()
-    {
-        for (int i=0;i<recievedOffers.size();i++)
-        {
-            System.out.println("offer number "+i+1+" -- "+recievedOffers.get(i));
+    public void checkOffers() {
+        for (int i = 0; i < recievedOffers.size(); i++) {
+            System.out.println("offer number " + (i + 1) + " -- " + recievedOffers.get(i));
         }
     }
-    public  void rateDriver(IDriver driver,int rating)
-    {
-        if (rating>=0&&rating<=5)
-        {
-            IRating rate=new Rating(rating);
-            driver.recieveRating(rate);
-        }
-        else
-        System.out.println("please enter number between 1 and 5");
+
+    public void rateDriver(IDriver driver, int rating) {
+        if (rating >= 1 && rating <= 5) {
+            driver.recieveRating(new Rating(rating));
+        } else
+            System.out.println("please enter number between 1 and 5");
     }
-    
+
+    @Override
+    public void setSuspended(boolean isSuspended) {
+        personalInfo.setSuspended(isSuspended);
+    }
+
 }

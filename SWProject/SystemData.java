@@ -24,7 +24,7 @@ public class SystemData implements ISystemData {
 
     @Override
     public boolean registerPassenger(PassengerInfo info){
-        passengers.add(new Passenger(/*info*/));
+        passengers.add(new Passenger(info));
         return true;
     }
     
