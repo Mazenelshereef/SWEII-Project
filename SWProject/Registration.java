@@ -6,11 +6,13 @@ public class Registration implements IRegistration {
 
     public Registration(DriverInfo info){
         userInfo = new DriverInfo(info);
+        isAccepted = false;
     }
 
     @Override
     public String toString() {
-        return "Registration info:";
+        String output = "[Registration info: " + userInfo.toString() + "\tisAccepted=" + isAccepted + "]";
+        return output;
     }
 
     @Override

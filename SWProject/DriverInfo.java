@@ -28,6 +28,12 @@ public class DriverInfo extends UserInfo implements IDriverInfo {
         public String getNationalId() {
             return nationalId;
         }
+
+        @Override
+        public String toString() {
+            return "[Driver info: username=" + username + "\temail=" + email + "\tmobile number=" + mobileNumber 
+                + "\tisSuspended=" + isSuspended + "\tlicenseID=" + licenseId + "\tnationalID=" + nationalId + "]";
+        }
     }
 
 
