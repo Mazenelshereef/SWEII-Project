@@ -4,4 +4,5 @@ public interface IDriver {
     public UserInfo getPersonalInfo();
     public boolean hasFavouriteArea(String area);
     public void recieveRideNotification(IRide ride);
+    public void setPersonalInfo(UserInfo info);
 }
