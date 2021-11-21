@@ -1,17 +1,17 @@
 package SWProject;
 
 public class Rating implements IRating {
-    private Passenger itsPassenger ;
+    private IPassenger itsPassenger ;
     private int value ;
 
 
     public int getValue() {
         return value;
     }
-    public Passenger getItsPassenger() {
+    public IPassenger getItsPassenger() {
         return itsPassenger;
     }
-    public void setItsPassenger(Passenger itsPassenger) {
+    public void setItsPassenger(IPassenger itsPassenger) {
         this.itsPassenger = itsPassenger;
     }
     public void setValue(int value) {
@@ -19,9 +19,11 @@ public class Rating implements IRating {
     }
     @Override
     public String toString() {
-        return "Rating [itsPassenger=" + itsPassenger + ", value=" + value + "]";
+        return "Rating [itsPassenger=" + itsPassenger.getPersonalInfo().getUsername() + ", value=" + value + "]";
     }
 
-    public Rating(int rate) {
+    public Rating(int rate, IPassenger itsPassenger) {
+        value = rate;
+        this.itsPassenger = itsPassenger;
     }
 }

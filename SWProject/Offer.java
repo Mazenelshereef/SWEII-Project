@@ -1,15 +1,19 @@
 package SWProject;
 
 public class Offer implements IOffer {
-    private Driver itsDriver ;
+    private IDriver itsDriver ;
     private double price  ;
     private boolean isAccepted ;
 
+    public Offer(double price, IDriver itsDriver){
+        this.price = price;
+        this.itsDriver = itsDriver;
+    }
 
-    public Driver getItsDriver() {
+    public IDriver getItsDriver() {
         return itsDriver;
     }
-    public void setItsDriver(Driver itsDriver) {
+    public void setItsDriver(IDriver itsDriver) {
         this.itsDriver = itsDriver;
     }
     public double getPrice() {
@@ -26,7 +30,7 @@ public class Offer implements IOffer {
     }
     @Override
     public String toString() {
-        return "Offer [isAccepted=" + isAccepted + ", itsDriver=" + itsDriver + ", price="
+        return "Offer [isAccepted=" + isAccepted + ", itsDriver=" + itsDriver.getPersonalInfo().getUsername() + ", price="
                 + price + "]";
     }
     

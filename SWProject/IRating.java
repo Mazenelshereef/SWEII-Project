@@ -3,7 +3,7 @@ package SWProject;
 public interface IRating {
     
     public int getValue() ;
-    public Passenger getItsPassenger() ;
-    public void setItsPassenger(Passenger itsPassenger);
+    public IPassenger getItsPassenger() ;
+    public void setItsPassenger(IPassenger itsPassenger);
     public void setValue(int value) ;
 }

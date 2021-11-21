@@ -1,8 +1,8 @@
 package SWProject;
 
 public interface IOffer {
-    public Driver getItsDriver() ;
-    public void setItsDriver(Driver itsDriver) ;
+    public IDriver getItsDriver() ;
+    public void setItsDriver(IDriver itsDriver) ;
     //public Ride getItsRide();
     //public void setItsRide(Ride itsRide);
     public double getPrice() ;

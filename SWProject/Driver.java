@@ -56,7 +56,7 @@ public class Driver implements IDriver, IUser {
     @Override
     public boolean hasFavouriteArea(String area) {
         for(int i = 0 ; i < favoriteAreas.size() ; ++i){
-            if( area == favoriteAreas.get(i) ){
+            if( area.equals(favoriteAreas.get(i))){
                 return true ;
             }
         }
@@ -66,9 +66,8 @@ public class Driver implements IDriver, IUser {
 
     @Override
     public String toString() {
-        return "Driver [averageRating=" + averageRating + ", favoriteAreaRides=" + favoriteAreaRides
-                + ", favoriteAreas=" + favoriteAreas + ", myOffers=" + myOffers + ", myRatings=" + myRatings
-                + ", personalInfo=" + personalInfo + "]";
+        return "Driver [personalInfo=" + personalInfo + ", averageRating=" + averageRating
+                + ", favoriteAreas=" + favoriteAreas + "]";
     }
 
     @Override
@@ -92,10 +91,8 @@ public class Driver implements IDriver, IUser {
     }
 
     @Override
-    public void suggestPrice(IRide ride, double price) {       
-        Offer offer = new Offer() ;
-        offer.setPrice(price);
-        ride.recieveOffer(offer);
+    public void suggestPrice(IRide ride, double price) {   
+        ride.recieveOffer(new Offer(price, this));
     }
 
     @Override
@@ -106,7 +103,8 @@ public class Driver implements IDriver, IUser {
 
     @Override
     public void recieveRating(IRating rating) {
-        this.myRatings.add(rating) ; 
+        this.myRatings.add(rating) ;
+        this.averageRating = 0;
         for(int i = 0 ; i < myRatings.size() ; ++i){
             this.averageRating += myRatings.get(i).getValue() ;
         }       

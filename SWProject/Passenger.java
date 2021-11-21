@@ -60,7 +60,7 @@ public class Passenger implements IPassenger, IUser {
 
     public void rateDriver(IDriver driver, int rating) {
         if (rating >= 1 && rating <= 5) {
-            driver.recieveRating(new Rating(rating));
+            driver.recieveRating(new Rating(rating, this));
         } else
             System.out.println("please enter number between 1 and 5");
     }
