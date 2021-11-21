@@ -50,4 +50,9 @@ public class Ride implements IRide {
                 ", offers=" + offers +
                 '}';
     }
+
+    @Override
+    public void recieveOffer(Offer offer) {
+        offers.add(offer);
+    }
 }

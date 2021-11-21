@@ -1,7 +1,7 @@
 package SWProject;
 
 public class Registration implements IRegistration {
-	private UserInfo userInfo;
+	private DriverInfo userInfo;
     private boolean isAccepted;
 
     public Registration(DriverInfo info){
@@ -16,12 +16,12 @@ public class Registration implements IRegistration {
     }
 
     @Override
-    public void setUserInfo(UserInfo info) {
+    public void setUserInfo(DriverInfo info) {
         userInfo = info;
     }
 
     @Override
-    public UserInfo getUserInfo(){
+    public DriverInfo getUserInfo(){
         return userInfo;
     }
 

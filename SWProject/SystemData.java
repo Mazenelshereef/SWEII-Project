@@ -48,7 +48,7 @@ public class SystemData implements ISystemData {
     @Override
     public void recieveRequestResponce(IRegistration registration, boolean isAccepted) {
         if (isAccepted)
-            drivers.add(new Driver(/*registration.getUserInfo()*/));
+            drivers.add(new Driver(registration.getUserInfo()));
         registrations.remove(registration);
     }
 

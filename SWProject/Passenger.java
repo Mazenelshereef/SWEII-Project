@@ -35,7 +35,7 @@ public class Passenger implements IPassenger, IUser {
     }
 
     public double checkDriverRating(IDriver driver) {
-        return driver.getAverageRate();
+        return driver.getAverageRating();
     }
 
     public void recieveOffer(IOffer offer) {
@@ -43,12 +43,12 @@ public class Passenger implements IPassenger, IUser {
     }
 
     public void acceptOffer(IOffer offer) {
-        offer.setisAccepted(true);
+        offer.setAccepted(true);
         recievedOffers.remove(offer);
     }
 
     public void denyOffer(IOffer offer) {
-        offer.setisAccepted(false);
+        offer.setAccepted(false);
         recievedOffers.remove(offer);
     }
 

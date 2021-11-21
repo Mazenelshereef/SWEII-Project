@@ -26,7 +26,7 @@ public class Offer implements IOffer {
     }
     @Override
     public String toString() {
-        return "Offer [isAccepted=" + isAccepted + ", itsDriver=" + itsDriver + ", itsRide=" + itsRide + ", price="
+        return "Offer [isAccepted=" + isAccepted + ", itsDriver=" + itsDriver + ", price="
                 + price + "]";
     }
     

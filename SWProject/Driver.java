@@ -8,9 +8,9 @@ public class Driver implements IDriver, IUser {
     private DriverInfo personalInfo ;
     private ArrayList<String>favoriteAreas = new ArrayList<String>() ;
     private double averageRating = 0;
-    private ArrayList<Rating> myRatings = new ArrayList<Rating> () ;
-    private ArrayList<Offer>myOffers = new ArrayList<>() ;
-    private ArrayList<Ride>favoriteAreaRides = new ArrayList<>() ;
+    private ArrayList<IRating> myRatings = new ArrayList<> () ;
+    private ArrayList<IOffer>myOffers = new ArrayList<>() ;
+    private ArrayList<IRide>favoriteAreaRides = new ArrayList<>() ;
 
 
     
@@ -24,19 +24,19 @@ public class Driver implements IDriver, IUser {
         personalInfo.setSuspended(isSuspended);
     }
 
-    public ArrayList<Offer> getMyOffers() {
+    public ArrayList<IOffer> getMyOffers() {
         return myOffers;
     }
 
-    public void setMyOffers(ArrayList<Offer> myOffers) {
+    public void setMyOffers(ArrayList<IOffer> myOffers) {
         this.myOffers = myOffers;
     }
 
-    public ArrayList<Rating> getMyRatings() {
+    public ArrayList<IRating> getMyRatings() {
         return myRatings;
     }
 
-    public void setMyRatings(ArrayList<Rating> myRatings) {
+    public void setMyRatings(ArrayList<IRating> myRatings) {
         this.myRatings = myRatings;
     }
 
@@ -72,7 +72,7 @@ public class Driver implements IDriver, IUser {
     }
 
     @Override
-    public void recieveRideNotification(Ride ride) {
+    public void recieveRideNotification(IRide ride) {
         this.favoriteAreaRides.add(ride) ;        
     }
 
@@ -92,7 +92,7 @@ public class Driver implements IDriver, IUser {
     }
 
     @Override
-    public void suggestPrice(Ride ride, double price) {       
+    public void suggestPrice(IRide ride, double price) {       
         Offer offer = new Offer() ;
         offer.setPrice(price);
         ride.recieveOffer(offer);
@@ -105,7 +105,7 @@ public class Driver implements IDriver, IUser {
     }
 
     @Override
-    public void recieveRating(Rating rating) {
+    public void recieveRating(IRating rating) {
         this.myRatings.add(rating) ; 
         for(int i = 0 ; i < myRatings.size() ; ++i){
             this.averageRating += myRatings.get(i).getValue() ;
