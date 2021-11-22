@@ -1,17 +1,17 @@
 package SWProject;
 
-public class Registration implements IRegistration {
+public class RegistrationRequest implements IRegistrationRequest {
 	private UserInfo userInfo;
     private boolean isAccepted;
 
-    public Registration(UserInfo info){
+    public RegistrationRequest(UserInfo info){
         userInfo = new DriverInfo((DriverInfo)info);
         isAccepted = false;
     }
 
     @Override
     public String toString() {
-        String output = "[Registration info: " + userInfo.toString() + "\tisAccepted=" + isAccepted + "]";
+        String output = "Registration info: [" + userInfo.toString() + ", isAccepted=" + isAccepted + "]";
         return output;
     }
 

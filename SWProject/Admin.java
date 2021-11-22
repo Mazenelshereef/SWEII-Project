@@ -31,18 +31,18 @@ public class Admin implements IAdmin {
         @Override
         public void listPendingRegistrations(){
             for(int i=0; i<= SystemData.getInstance().getRegistrations().size(); i++){
-                System.out.println(i+1 +":"+ SystemData.getInstance().getRegistrations().get(i));
+                System.out.println((i+1) +":"+ SystemData.getInstance().getRegistrations().get(i));
             }
         }
 
         @Override
-        public void verifyDriverRegistration(IRegistration request){
-            SystemData.getInstance().recieveRequestResponce(request, true);
+        public void verifyDriverRegistration(IRegistrationRequest request){
+            DriverAuthenticator.getInstance().recieveRequestResponce(request, true);
         }
 
         @Override
-        public void denyDriverRegistration(IRegistration request){
-            SystemData.getInstance().recieveRequestResponce(request, false);        }
+        public void denyDriverRegistration(IRegistrationRequest request){
+            DriverAuthenticator.getInstance().recieveRequestResponce(request, false);        }
 
         @Override
         public void suspendUser(ISuspendableUser user){

@@ -5,15 +5,12 @@ import java.util.ArrayList;
 
 public class Driver implements IDriver {
 
-    private DriverInfo personalInfo ;
+    private UserInfo personalInfo ;
     private ArrayList<String>favoriteAreas = new ArrayList<String>() ;
     private double averageRating = 0;
     private ArrayList<IRating> myRatings = new ArrayList<> () ;
     private ArrayList<IOffer>myOffers = new ArrayList<>() ;
     private ArrayList<IRide>favoriteAreaRides = new ArrayList<>() ;
-
-
-    
 
     public Driver(DriverInfo personalInfo) {
         this.personalInfo = personalInfo;
@@ -54,6 +51,11 @@ public class Driver implements IDriver {
     }
 
     @Override
+    public void setPersonalInfo(UserInfo info) {
+        this.personalInfo = (DriverInfo) info ;
+    }
+
+    @Override
     public boolean hasFavouriteArea(String area) {
         for(int i = 0 ; i < favoriteAreas.size() ; ++i){
             if( area.equals(favoriteAreas.get(i))){
@@ -76,11 +78,6 @@ public class Driver implements IDriver {
     }
 
     @Override
-    public void setPersonalInfo(UserInfo info) {
-        this.personalInfo = (DriverInfo) info ;
-    }
-
-    @Override
     public void addFavoriteArea(String name) {
         favoriteAreas.add(name) ;        
     }
@@ -91,8 +88,8 @@ public class Driver implements IDriver {
     }
 
     @Override
-    public void suggestPrice(IRide ride, double price) {   
-        ride.recieveOffer(new Offer(price, this));
+    public void suggestPrice(IRide ride, double price) {
+        Notifier.getInstance().notifyPassengerWithOffer(new Offer(price, this), ride);   
     }
 
     @Override

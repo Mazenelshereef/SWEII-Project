@@ -14,7 +14,7 @@ public class DriverAuthenticator implements ILoginAuthenticator, IRegisterAuthen
 
     @Override
     public boolean register(UserInfo userInfo) {
-        SystemData.getInstance().getRegistrations().add(new Registration(userInfo));
+        SystemData.getInstance().getRegistrations().add(new RegistrationRequest(userInfo));
         return true;
     }
 
@@ -25,6 +25,12 @@ public class DriverAuthenticator implements ILoginAuthenticator, IRegisterAuthen
                 return driver;
         }
         return null;
+    }
+
+    public void recieveRequestResponce(IRegistrationRequest registration, boolean isAccepted) {
+        if (isAccepted)
+            SystemData.getInstance().getDrivers().add(new Driver((DriverInfo)registration.getUserInfo()));
+        SystemData.getInstance().getRegistrations().remove(registration);
     }
     
 }

@@ -5,8 +5,8 @@ public interface IAdmin extends IUser{
     public  String getUsername();
     public void setPassword(String password);
     public String getPassword();
-    public void verifyDriverRegistration(IRegistration request);
-    public void denyDriverRegistration(IRegistration request);
+    public void verifyDriverRegistration(IRegistrationRequest request);
+    public void denyDriverRegistration(IRegistrationRequest request);
     public void suspendUser(ISuspendableUser user);
     public void unsuspendUser(ISuspendableUser user);
     public void listPendingRegistrations();

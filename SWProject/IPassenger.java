@@ -7,6 +7,6 @@ public void recieveOffer (IOffer offer);
 public void acceptOffer(IOffer offer);
 public void denyOffer(IOffer offer);
 public void checkOffers();
-public void rateDriver(IDriver driver,int rating);
+public void rateDriver(IDriver driver,int ratingValue);
 public void requestRide(String s,String d);
 }

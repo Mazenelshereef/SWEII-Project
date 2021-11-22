@@ -3,56 +3,69 @@ import java.util.ArrayList;
 
 public class Ride implements IRide {
     private String source;
-    private String distenation;
+    private String destination;
     private IPassenger itsPassenger;
     private ArrayList<IOffer> offers;
 
-    public Ride(String source, String distenation, IPassenger itsPassenger) {
+    public Ride(String source, String destination, IPassenger itsPassenger) {
         this.source = source;
-        this.distenation = distenation;
+        this.destination = destination;
         this.itsPassenger = itsPassenger;
     }
 
+    @Override
     public String getSource(){
         return source;
     }
 
+    @Override
     public void setSource(String source) {
         this.source = source;
     }
 
-    public String getDistenation() {
-        return distenation;
+    @Override
+    public void setDestination(String destination) {
+        this.destination = destination;
+        
     }
 
-    public void setDistenation(String distenation) {
-        this.distenation = distenation;
+    @Override
+    public String getDestination() {
+        return destination;
     }
 
+    @Override
     public IPassenger getItsPassenger() {
         return itsPassenger;
     }
 
+    @Override
     public void setItsPassenger(IPassenger itsPassenger) {
         this.itsPassenger = itsPassenger;
     }
 
+    @Override
+    public void setOffers(ArrayList<IOffer> offers) {
+        this.offers = offers;
+    }
+
+    @Override
     public ArrayList<IOffer> getOffers() {
         return offers;
     }
 
     @Override
     public String toString() {
-        return "Ride{" +
-                "sourse='" + source + '\'' +
-                ", distenation='" + distenation + '\'' +
-                ", itsPassenger=" + itsPassenger +
+        return "Ride: {" +
+                "source='" + source + '\'' +
+                ", distenation='" + destination + '\'' +
+                ", itsPassenger=" + itsPassenger.getPersonalInfo().getUsername() +
                 ", offers=" + offers +
                 '}';
     }
 
     @Override
-    public void recieveOffer(Offer offer) {
+    public void recieveOffer(IOffer offer) {
         offers.add(offer);
     }
 }

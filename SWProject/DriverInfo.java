@@ -13,6 +13,16 @@ public class DriverInfo extends UserInfo {
             this.nationalId = obj.nationalId;
         }
 
+        public DriverInfo(String username, String password, String email, String mobileNumber, String licenseId, String nationalId){
+            this.username = username;
+            this.password = password;
+            this.email = email;
+            this.mobileNumber = mobileNumber;
+            this.isSuspended = false;
+            this.licenseId = licenseId;
+            this.nationalId = nationalId;
+        }
+
         public void setLicenseId(String licenseId) {
             this.licenseId = licenseId;
         }
@@ -31,8 +41,8 @@ public class DriverInfo extends UserInfo {
 
         @Override
         public String toString() {
-            return "[Driver info: username=" + username + "\temail=" + email + "\tmobile number=" + mobileNumber 
-                + "\tisSuspended=" + isSuspended + "\tlicenseID=" + licenseId + "\tnationalID=" + nationalId + "]";
+            return "Driver info [username=" + username + ", email=" + email + ", mobile number=" + mobileNumber 
+                + ", isSuspended=" + isSuspended + ", licenseID=" + licenseId + ", nationalID=" + nationalId + "]";
         }
     }
 

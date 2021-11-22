@@ -10,9 +10,17 @@ public class PassengerInfo extends UserInfo {
         this.isSuspended = obj.isSuspended;
     }
 
+    public PassengerInfo(String username, String password, String email, String mobileNumber){
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.mobileNumber = mobileNumber;
+        this.isSuspended = false;
+    }
+
     @Override
     public String toString() {
-        return "[Passenger info: username=" + username + "\temail=" + email 
-            + "\tmobile number=" + mobileNumber + "\tisSuspended=" + isSuspended + "]";
+        return "Passenger info: [username=" + username + ", email=" + email 
+            + ", mobile number=" + mobileNumber + ", isSuspended=" + isSuspended + "]";
     }
 }

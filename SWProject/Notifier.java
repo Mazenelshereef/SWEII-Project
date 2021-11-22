@@ -20,5 +20,16 @@ public class Notifier implements INotifier {
         }
     }
 
+    @Override
+    public void notifyDriverWithRating(IRating rating, IDriver driver) {
+        driver.recieveRating(rating);
+    }
+
+    @Override
+    public void notifyPassengerWithOffer(IOffer offer, IRide ride) {
+        ride.recieveOffer(offer);
+        ride.getItsPassenger().recieveOffer(offer);
+    }
+
 
 }

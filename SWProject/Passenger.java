@@ -54,13 +54,13 @@ public class Passenger implements IPassenger {
 
     public void checkOffers() {
         for (int i = 0; i < recievedOffers.size(); i++) {
-            System.out.println("offer number " + (i + 1) + " -- " + recievedOffers.get(i));
+            System.out.println("offer number " + (i + 1) + ": " + recievedOffers.get(i));
         }
     }
 
-    public void rateDriver(IDriver driver, int rating) {
-        if (rating >= 1 && rating <= 5) {
-            driver.recieveRating(new Rating(rating, this));
+    public void rateDriver(IDriver driver, int ratingValue) {
+        if (ratingValue >= 1 && ratingValue <= 5) {
+            Notifier.getInstance().notifyDriverWithRating(new Rating(ratingValue, this), driver);
         } else
             System.out.println("please enter number between 1 and 5");
     }
