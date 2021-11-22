@@ -87,7 +87,9 @@ public class Driver implements IDriver {
 
     @Override
     public void listRidesInFavouriteAreas() {     
-        System.out.println(favoriteAreaRides);
+        for(int i = 0 ; i < favoriteAreaRides.size() ; ++i){
+            System.out.println(favoriteAreaRides.get(i).toString());
+        }
     }
 
     @Override
@@ -97,7 +99,9 @@ public class Driver implements IDriver {
 
     @Override
     public void listRating() {
-        // TODO Auto-generated method stub
+        for(int i = 0 ; i < myRatings.size() ; ++i){
+            System.out.println(myRatings.get(i).toString());
+        }
         
     }
 
@@ -113,7 +117,9 @@ public class Driver implements IDriver {
 
     @Override
     public void viewMyOffers() {
-        System.out.println(myOffers);        
+        for(int i = 0 ; i < myOffers.size() ; ++i){
+            System.out.println(myOffers.get(i).toString());
+        }
     }
 
 }
