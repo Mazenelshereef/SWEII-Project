@@ -23,6 +23,22 @@ public class DriverInfo extends UserInfo {
             this.nationalId = nationalId;
         }
 
+        //to make email optional
+        public DriverInfo(String username, String password, String mobileNumber, String licenseId, String nationalId){
+            this.username = username;
+            this.password = password;
+            this.email = "*not determined*";
+            this.mobileNumber = mobileNumber;
+            this.isSuspended = false;
+            this.licenseId = licenseId;
+            this.nationalId = nationalId;
+        }
+
+        public DriverInfo(){
+            this.email = "*not determined*";
+            this.isSuspended = false;
+        }
+
         public void setLicenseId(String licenseId) {
             this.licenseId = licenseId;
         }

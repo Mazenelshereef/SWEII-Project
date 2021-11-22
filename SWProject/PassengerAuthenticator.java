@@ -19,12 +19,27 @@ public class PassengerAuthenticator implements ILoginAuthenticator, IRegisterAut
     }
 
     @Override
-    public IUser login(String username, String password) {
+    public IUser login(String username, String password) throws Exception {
         for (IPassenger passenger : SystemData.getInstance().getPassengers()){
-            if (passenger.getPersonalInfo().getUsername().equals(username) && passenger.getPersonalInfo().getPassword().equals(password))
-                return passenger;
+            if (passenger.getPersonalInfo().getUsername().equals(username) && passenger.getPersonalInfo().getPassword().equals(password)){
+                if (!passenger.getPersonalInfo().getSuspended())
+                    return passenger;
+                else
+                    throw new Exception("ERROR: This Passenger is suspended");
+            }
+                
         }
-        return null;
+        throw new Exception("ERROR: This Passenger was not found, please check username and password");
+    }
+
+    @Override
+    public IUser search(String username) throws Exception {
+        for (IPassenger passenger : SystemData.getInstance().getPassengers()){
+            if (passenger.getPersonalInfo().getUsername().equals(username)){
+                return passenger;
+            }              
+        }
+        throw new Exception("ERROR: This Passenger was not found");
     }
     
 }

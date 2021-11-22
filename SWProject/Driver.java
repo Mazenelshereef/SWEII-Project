@@ -91,11 +91,13 @@ public class Driver implements IDriver {
 
     @Override
     public void suggestPrice(IRide ride, double price) {
-        Notifier.getInstance().notifyPassengerWithOffer(new Offer(price, this), ride);   
+        Offer offer = new Offer(price, this);
+        Notifier.getInstance().notifyPassengerWithOffer(offer, ride);  
+        myOffers.add(offer); 
     }
 
     @Override
-    public void listRating() {
+    public void listPassengersRatings() {
         for(int i = 0 ; i < myRatings.size() ; ++i){
             System.out.println((i+1) + ": " + myRatings.get(i).toString());
         }
@@ -117,6 +119,11 @@ public class Driver implements IDriver {
         for(int i = 0 ; i < myOffers.size() ; ++i){
             System.out.println((i+1) + ": " + myOffers.get(i).toString());
         }
+    }
+
+    @Override
+    public ArrayList<IRide> getFavouriteAreaRides() {
+        return favoriteAreaRides;
     }
 
 }

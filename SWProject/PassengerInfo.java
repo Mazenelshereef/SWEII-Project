@@ -18,6 +18,20 @@ public class PassengerInfo extends UserInfo {
         this.isSuspended = false;
     }
 
+    //to make email optional
+    public PassengerInfo(String username, String password, String mobileNumber){
+        this.username = username;
+        this.password = password;
+        this.email = "*not determined*";
+        this.mobileNumber = mobileNumber;
+        this.isSuspended = false;
+    }
+
+    public PassengerInfo(){
+        this.email = "*not determined*";
+        this.isSuspended = false;
+    }
+
     @Override
     public String toString() {
         return "Passenger info: [username=" + username + ", email=" + email 

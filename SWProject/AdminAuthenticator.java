@@ -13,10 +13,17 @@ public class AdminAuthenticator implements ILoginAuthenticator {
     }
 
     @Override
-    public IUser login(String username, String password) {
+    public IUser login(String username, String password) throws Exception {
         if (SystemData.getInstance().getAdmin().getUsername().equals(username) && SystemData.getInstance().getAdmin().getPassword().equals(password))
             return SystemData.getInstance().getAdmin();
-        return null;
+        throw new Exception("ERROR: This admin was not found, please check username and password");
+    }
+
+    @Override
+    public IUser search(String username) throws Exception {
+        if (SystemData.getInstance().getAdmin().getUsername().equals(username))
+            return SystemData.getInstance().getAdmin();
+        throw new Exception("ERROR: This admin was not found");
     }
     
 }

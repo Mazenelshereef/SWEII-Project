@@ -27,8 +27,8 @@ public class Passenger implements IPassenger {
         return myRides;
     }
 
-    public void requestRide(String source, String distenation) {
-        IRide ride = new Ride(source, distenation, this);
+    public void requestRide(String source, String destination) {
+        IRide ride = new Ride(source, destination, this);
         myRides.add(ride);
         //notify drivers that a ride is requested with source from their favourite areas
         Notifier.getInstance().notifyDriversWithRide(ride);
@@ -58,11 +58,11 @@ public class Passenger implements IPassenger {
         }
     }
 
-    public void rateDriver(IDriver driver, int ratingValue) {
+    public void rateDriver(IDriver driver, int ratingValue) throws Exception {
         if (ratingValue >= 1 && ratingValue <= 5) {
             Notifier.getInstance().notifyDriverWithRating(new Rating(ratingValue, this), driver);
         } else
-            System.out.println("please enter number between 1 and 5");
+            throw new Exception("please enter number between 1 and 5");
     }
 
     @Override
