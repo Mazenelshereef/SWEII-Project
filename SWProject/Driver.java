@@ -85,7 +85,7 @@ public class Driver implements IDriver {
     @Override
     public void listRidesInFavouriteAreas() {     
         for(int i = 0 ; i < favoriteAreaRides.size() ; ++i){
-            System.out.println(favoriteAreaRides.get(i).toString());
+            System.out.println((i+1) + ": " + favoriteAreaRides.get(i).toString());
         }
     }
 
@@ -97,7 +97,7 @@ public class Driver implements IDriver {
     @Override
     public void listRating() {
         for(int i = 0 ; i < myRatings.size() ; ++i){
-            System.out.println(myRatings.get(i).toString());
+            System.out.println((i+1) + ": " + myRatings.get(i).toString());
         }
         
     }
@@ -115,7 +115,7 @@ public class Driver implements IDriver {
     @Override
     public void viewMyOffers() {
         for(int i = 0 ; i < myOffers.size() ; ++i){
-            System.out.println(myOffers.get(i).toString());
+            System.out.println((i+1) + ": " + myOffers.get(i).toString());
         }
     }
 
