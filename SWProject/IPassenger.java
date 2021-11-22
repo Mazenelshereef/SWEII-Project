@@ -1,7 +1,6 @@
 package SWProject;
 
-public interface IPassenger {
-
+public interface IPassenger extends ISuspendableUser {
 public UserInfo getPersonalInfo();
 public double checkDriverRating(IDriver driver);
 public void recieveOffer (IOffer offer);

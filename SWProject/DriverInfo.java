@@ -1,6 +1,6 @@
 package SWProject;
 
-public class DriverInfo extends UserInfo implements IDriverInfo {
+public class DriverInfo extends UserInfo {
         private String licenseId, nationalId;
 
         public DriverInfo(DriverInfo obj){

@@ -2,7 +2,7 @@ package SWProject;
 
 import java.util.ArrayList;
 
-public interface IDriver {
+public interface IDriver extends ISuspendableUser {
     public UserInfo getPersonalInfo();
     public boolean hasFavouriteArea(String area);
     public void recieveRideNotification(IRide ride);

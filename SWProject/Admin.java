@@ -45,12 +45,12 @@ public class Admin implements IAdmin {
             SystemData.getInstance().recieveRequestResponce(request, false);        }
 
         @Override
-        public void suspendUser(IUser user){
+        public void suspendUser(ISuspendableUser user){
             user.setSuspended(true);
         }
         
         @Override
-        public void unsuspendUser(IUser user){
+        public void unsuspendUser(ISuspendableUser user){
             user.setSuspended(false);
         }
 }

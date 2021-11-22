@@ -22,6 +22,7 @@ public class SystemData implements ISystemData {
         return instance;
     }
 
+    /*
     @Override
     public boolean registerPassenger(PassengerInfo info){
         passengers.add(new Passenger(info));
@@ -33,22 +34,12 @@ public class SystemData implements ISystemData {
         registrations.add(new Registration(info));
         return true;
     }
-
-    //login functions
-
-    @Override
-    public void notifyDrivers(IRide ride){
-        for (IDriver driver : drivers){
-            if (driver.hasFavouriteArea(ride.getSource())){
-                driver.recieveRideNotification(ride);
-            }
-        }
-    }
+    */
 
     @Override
     public void recieveRequestResponce(IRegistration registration, boolean isAccepted) {
         if (isAccepted)
-            drivers.add(new Driver(registration.getUserInfo()));
+            drivers.add(new Driver((DriverInfo)registration.getUserInfo()));
         registrations.remove(registration);
     }
 
@@ -67,6 +58,12 @@ public class SystemData implements ISystemData {
         return passengers;
     }
 
+    @Override
+    public IAdmin getAdmin() {
+        return admin;
+    }
+
+    /*
     @Override
     public IAdmin loginIAdmin(String username, String password) {
         if (admin.getUsername().equals(username) && admin.getPassword().equals(password))
@@ -91,5 +88,5 @@ public class SystemData implements ISystemData {
         }
         return null;
     }
-    
+    */
 }

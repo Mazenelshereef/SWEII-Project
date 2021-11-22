@@ -1,6 +1,6 @@
 package SWProject;
 
-public class PassengerInfo extends UserInfo implements IPassengerInfo {
+public class PassengerInfo extends UserInfo {
 
     public PassengerInfo(PassengerInfo obj){
         this.username = obj.username;

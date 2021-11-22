@@ -2,7 +2,7 @@ package SWProject;
 
 import java.util.ArrayList;
 
-public class Passenger implements IPassenger, IUser {
+public class Passenger implements IPassenger {
     private UserInfo personalInfo;
     private ArrayList<IOffer> recievedOffers;
     private ArrayList<IRide> myRides;
@@ -31,7 +31,7 @@ public class Passenger implements IPassenger, IUser {
         IRide ride = new Ride(source, distenation, this);
         myRides.add(ride);
         //notify drivers that a ride is requested with source from their favourite areas
-        SystemData.getInstance().notifyDrivers(ride);
+        Notifier.getInstance().notifyDriversWithRide(ride);
     }
 
     public double checkDriverRating(IDriver driver) {

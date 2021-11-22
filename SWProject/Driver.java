@@ -3,7 +3,7 @@ package SWProject;
 import java.util.ArrayList;
 
 
-public class Driver implements IDriver, IUser {
+public class Driver implements IDriver {
 
     private DriverInfo personalInfo ;
     private ArrayList<String>favoriteAreas = new ArrayList<String>() ;
