@@ -8,7 +8,7 @@ public interface IDriver extends ISuspendableUser {
     public void recieveRideNotification(IRide ride);
     public void setPersonalInfo(UserInfo info);
     public void addFavoriteArea(String name) ;
-    public void listRidesInFavouriteAreas();
+    public boolean listRidesInFavouriteAreas();
     public void suggestPrice(IRide ride , double price) ;
     public void listPassengersRatings(); 
     public void recieveRating(IRating rating) ;

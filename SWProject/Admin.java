@@ -28,11 +28,18 @@ public class Admin implements IAdmin {
             return password;
         }
         
+        //returns false if there are no requests, true otherwise.
         @Override
-        public void listPendingRegistrations(){
+        public boolean listPendingRegistrations(){
             for(int i=0; i < SystemData.getInstance().getRegistrations().size(); i++){
                 System.out.println((i+1) +":"+ SystemData.getInstance().getRegistrations().get(i));
             }
+            if (SystemData.getInstance().getRegistrations().size() == 0)
+            {
+                System.out.println("You have no pending requests.");
+                return false;
+            }
+            return true;   
         }
 
         @Override

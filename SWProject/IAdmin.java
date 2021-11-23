@@ -9,5 +9,5 @@ public interface IAdmin extends IUser{
     public void denyDriverRegistration(IRegistrationRequest request);
     public void suspendUser(ISuspendableUser user);
     public void unsuspendUser(ISuspendableUser user);
-    public void listPendingRegistrations();
+    public boolean listPendingRegistrations();
 }

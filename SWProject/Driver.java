@@ -6,14 +6,19 @@ import java.util.ArrayList;
 public class Driver implements IDriver {
 
     private UserInfo personalInfo ;
-    private ArrayList<String>favoriteAreas = new ArrayList<String>() ;
-    private double averageRating = 0;
-    private ArrayList<IRating> myRatings = new ArrayList<> () ;
-    private ArrayList<IOffer>myOffers = new ArrayList<>() ;
-    private ArrayList<IRide>favoriteAreaRides = new ArrayList<>() ;
+    private ArrayList<String> favoriteAreas;
+    private double averageRating;
+    private ArrayList<IRating> myRatings;
+    private ArrayList<IOffer> myOffers;
+    private ArrayList<IRide> favoriteAreaRides;
 
     public Driver(DriverInfo personalInfo) {
         this.personalInfo = personalInfo;
+        favoriteAreas = new ArrayList<>();
+        averageRating = 0;
+        myRatings = new ArrayList<> () ;
+        myOffers = new ArrayList<>() ;
+        favoriteAreaRides = new ArrayList<>() ;
     }
 
     @Override
@@ -83,10 +88,15 @@ public class Driver implements IDriver {
     }
 
     @Override
-    public void listRidesInFavouriteAreas() {     
+    public boolean listRidesInFavouriteAreas() {
+        if (favoriteAreaRides.size() == 0){
+            System.out.println("You have no ride notifications");
+            return false;
+        }     
         for(int i = 0 ; i < favoriteAreaRides.size() ; ++i){
             System.out.println((i+1) + ": " + favoriteAreaRides.get(i).toString());
         }
+        return true;
     }
 
     @Override
@@ -98,10 +108,13 @@ public class Driver implements IDriver {
 
     @Override
     public void listPassengersRatings() {
+        if (myRatings.size() == 0){
+            System.out.println("You have no ratings");
+            return;
+        }   
         for(int i = 0 ; i < myRatings.size() ; ++i){
             System.out.println((i+1) + ": " + myRatings.get(i).toString());
         }
-        
     }
 
     @Override
@@ -116,6 +129,10 @@ public class Driver implements IDriver {
 
     @Override
     public void viewMyOffers() {
+        if (myOffers.size() == 0){
+            System.out.println("You have no offers");
+            return;
+        }   
         for(int i = 0 ; i < myOffers.size() ; ++i){
             System.out.println((i+1) + ": " + myOffers.get(i).toString());
         }

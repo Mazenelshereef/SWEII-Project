@@ -9,6 +9,8 @@ public class Passenger implements IPassenger {
 
     public Passenger(UserInfo personalInfo) {
         this.personalInfo = personalInfo;
+        recievedOffers = new ArrayList<>();
+        myRides = new ArrayList<>();
     }
 
     public void setPersonalInfo(UserInfo personalInfo) {
@@ -52,10 +54,15 @@ public class Passenger implements IPassenger {
         recievedOffers.remove(offer);
     }
 
-    public void checkOffers() {
+    public boolean checkOffers() {
+        if (recievedOffers.size() == 0){
+            System.out.println("You have no recieved offers");
+            return false;
+        }   
         for (int i = 0; i < recievedOffers.size(); i++) {
             System.out.println("offer number " + (i + 1) + ": " + recievedOffers.get(i));
         }
+        return true;
     }
 
     public void rateDriver(IDriver driver, int ratingValue) throws Exception {

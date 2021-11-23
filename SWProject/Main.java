@@ -124,57 +124,58 @@ public class Main {
 										//Passenger account -> check received offers
 										case 2:
 										{
-											passenger.checkOffers();
-											System.out.println("Choose the offer that you're interested in (Enter 0 if you want to go back): ");
-											int offerNumber = input.nextInt();
-											if (offerNumber == 0)
-												break;
-
-											int offerMenuChoice = 1;
-											while (offerMenuChoice == 1){
-												//offer action Menu
-												System.out.println("->Offer Actions<-");
-												System.out.println("1- Check driver rating");
-												System.out.println("2- accept offer");
-												System.out.println("3- deny offer");
-												System.out.println("4- Go back to Passenger Menu");
-												offerMenuChoice = input.nextInt();
-												switch(offerMenuChoice)
-												{
-													//offer action Menu -> Check driver rating
-													case 1:
-														System.out.println("Driver rating = " + passenger.checkDriverRating(passenger.getRecievedOffers().get(offerNumber-1).getItsDriver()));
-														break;
-													//offer action Menu -> accept offer
-													case 2:
-														Driver driverOfOffer = (Driver)passenger.getRecievedOffers().get(offerNumber-1).getItsDriver();
-														passenger.acceptOffer(passenger.getRecievedOffers().get(offerNumber-1));
-														System.out.println("Offer accepted successfully.");
-														System.out.println("------------------------------");
-														System.out.println("1- Rate driver\t 2- continue");
-														int rateDriverChoice = input.nextInt();
-														if (rateDriverChoice == 1){
-															while (true){
-																try {
-																	System.out.println("Enter rating value between 1 and 5:");
-																	int ratingValue = input.nextInt();
-																	passenger.rateDriver(driverOfOffer, ratingValue);
-																	break;
-																} catch (Exception e) {
-																	System.out.println(e.toString());
-																}
-															}	
-														}
-														break;
-													//offer action Menu -> deny offer
-													case 3:
-														passenger.denyOffer(passenger.getRecievedOffers().get(offerNumber-1));
-														System.out.println("Offer denied successfully.");
-														System.out.println("------------------------------");
-														break;
-													//offer action Menu -> Go back
-													default:
-														break;
+											if (passenger.checkOffers()){
+												System.out.println("Choose the offer that you're interested in (Enter 0 if you want to go back): ");
+												int offerNumber = input.nextInt();
+												if (offerNumber == 0)
+													break;
+	
+												int offerMenuChoice = 1;
+												while (offerMenuChoice == 1){
+													//offer action Menu
+													System.out.println("->Offer Actions<-");
+													System.out.println("1- Check driver rating");
+													System.out.println("2- accept offer");
+													System.out.println("3- deny offer");
+													System.out.println("4- Go back to Passenger Menu");
+													offerMenuChoice = input.nextInt();
+													switch(offerMenuChoice)
+													{
+														//offer action Menu -> Check driver rating
+														case 1:
+															System.out.println("Driver rating = " + passenger.checkDriverRating(passenger.getRecievedOffers().get(offerNumber-1).getItsDriver()));
+															break;
+														//offer action Menu -> accept offer
+														case 2:
+															Driver driverOfOffer = (Driver)passenger.getRecievedOffers().get(offerNumber-1).getItsDriver();
+															passenger.acceptOffer(passenger.getRecievedOffers().get(offerNumber-1));
+															System.out.println("Offer accepted successfully.");
+															System.out.println("------------------------------");
+															System.out.println("1- Rate driver\t 2- continue");
+															int rateDriverChoice = input.nextInt();
+															if (rateDriverChoice == 1){
+																while (true){
+																	try {
+																		System.out.println("Enter rating value between 1 and 5:");
+																		int ratingValue = input.nextInt();
+																		passenger.rateDriver(driverOfOffer, ratingValue);
+																		break;
+																	} catch (Exception e) {
+																		System.out.println(e.toString());
+																	}
+																}	
+															}
+															break;
+														//offer action Menu -> deny offer
+														case 3:
+															passenger.denyOffer(passenger.getRecievedOffers().get(offerNumber-1));
+															System.out.println("Offer denied successfully.");
+															System.out.println("------------------------------");
+															break;
+														//offer action Menu -> Go back
+														default:
+															break;
+													}
 												}
 											}
 											break;
@@ -230,18 +231,21 @@ public class Main {
 										//Driver account -> List rides in favourite areas
 										case 2:
 										{
-											driver.listRidesInFavouriteAreas();
-											System.out.println("Choose the Ride that you're interested in (Enter 0 if you want to go back): ");
-											int rideNumber = input.nextInt();
-											if (rideNumber == 0)
-												break;
-											System.out.println(driver.getFavouriteAreaRides().get(rideNumber-1));
-											System.out.println("1- Suggest price\t 2- continue");
-											int rideActionChoice = input.nextInt();
-											if (rideActionChoice == 1){
-												System.out.println("Enter price:");
-												double price = input.nextDouble();
-												driver.suggestPrice(driver.getFavouriteAreaRides().get(rideNumber-1), price);
+											if (driver.listRidesInFavouriteAreas()){
+												System.out.println("Choose the Ride that you're interested in (Enter 0 if you want to go back): ");
+												int rideNumber = input.nextInt();
+												if (rideNumber == 0)
+													break;
+												System.out.println(driver.getFavouriteAreaRides().get(rideNumber-1));
+												System.out.println("1- Suggest price\t 2- continue");
+												int rideActionChoice = input.nextInt();
+												if (rideActionChoice == 1){
+													System.out.println("Enter price:");
+													double price = input.nextDouble();
+													driver.suggestPrice(driver.getFavouriteAreaRides().get(rideNumber-1), price);
+													System.out.println("Offer sent successfully.");
+													System.out.println("------------------------------");
+												}
 											}
 											break;
 										}
@@ -298,21 +302,22 @@ public class Main {
 										//Admin account -> List pending registration requests
 										case 1:
 										{
-											admin.listPendingRegistrations();
-											System.out.println("Choose the request that you're interested in (Enter 0 if you want to go back): ");
-											int requestNumber = input.nextInt();
-											if (requestNumber == 0)
-												break;
-											RegistrationRequest request = (RegistrationRequest) SystemData.getInstance().getRegistrations().get(requestNumber-1);
-											System.out.println(request);
-											System.out.println("1- varify request\t 2- deny request\t 3- continue");
-											int requestActionChoice = input.nextInt();
-											if (requestActionChoice == 1){
-												admin.verifyDriverRegistration(request);
-												System.out.println("account varified successfully.");
-											} else if (requestActionChoice == 2){
-												admin.denyDriverRegistration(request);
-												System.out.println("account denied successfully.");
+											if (admin.listPendingRegistrations()){
+												System.out.println("Choose the request that you're interested in (Enter 0 if you want to go back): ");
+												int requestNumber = input.nextInt();
+												if (requestNumber == 0)
+													break;
+												RegistrationRequest request = (RegistrationRequest) SystemData.getInstance().getRegistrations().get(requestNumber-1);
+												System.out.println(request);
+												System.out.println("1- varify request\t 2- deny request\t 3- continue");
+												int requestActionChoice = input.nextInt();
+												if (requestActionChoice == 1){
+													admin.verifyDriverRegistration(request);
+													System.out.println("account varified successfully.");
+												} else if (requestActionChoice == 2){
+													admin.denyDriverRegistration(request);
+													System.out.println("account denied successfully.");
+												}
 											}
 											break;
 										}
@@ -326,6 +331,8 @@ public class Main {
 												String suspendUsername = input.next();
 												try {
 													admin.suspendUser((ISuspendableUser) PassengerAuthenticator.getInstance().search(suspendUsername));
+													System.out.println("Account suspended successfully.");
+                            						System.out.println("-----------------------------------");
 												} catch (Exception e) {
 													System.out.println(e.toString());
 												}
@@ -334,6 +341,8 @@ public class Main {
 												String suspendUsername = input.next();
 												try {
 													admin.suspendUser((ISuspendableUser) DriverAuthenticator.getInstance().search(suspendUsername));
+													System.out.println("Account suspended successfully.");
+                            						System.out.println("-----------------------------------");
 												} catch (Exception e) {
 													System.out.println(e.toString());
 												}
@@ -350,6 +359,8 @@ public class Main {
 												String unsuspendUsername = input.next();
 												try {
 													admin.unsuspendUser((ISuspendableUser) PassengerAuthenticator.getInstance().search(unsuspendUsername));
+													System.out.println("Account unsuspended successfully.");
+                            						System.out.println("-----------------------------------");
 												} catch (Exception e) {
 													System.out.println(e.toString());
 												}
@@ -358,6 +369,8 @@ public class Main {
 												String unsuspendUsername = input.next();
 												try {
 													admin.unsuspendUser((ISuspendableUser) DriverAuthenticator.getInstance().search(unsuspendUsername));
+													System.out.println("Account unsuspended successfully.");
+                            						System.out.println("-----------------------------------");
 												} catch (Exception e) {
 													System.out.println(e.toString());
 												}
@@ -393,6 +406,7 @@ public class Main {
                     break;
             }
         }
+		input.close();
 	}
 
 }

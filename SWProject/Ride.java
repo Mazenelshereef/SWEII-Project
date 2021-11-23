@@ -11,6 +11,7 @@ public class Ride implements IRide {
         this.source = source;
         this.destination = destination;
         this.itsPassenger = itsPassenger;
+        offers = new ArrayList<>();
     }
 
     @Override
