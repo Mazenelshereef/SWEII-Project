@@ -209,7 +209,7 @@ public class Main {
 								int driverMenuChoice = 0;
 								while(driverMenuChoice != 5)
 								{
-									//Passenger Menu
+									//Driver Menu
 									System.out.println("->Driver Menu<-");
 									System.out.println("1- Add favourite area");
 									System.out.println("2- List rides in favourite areas");
