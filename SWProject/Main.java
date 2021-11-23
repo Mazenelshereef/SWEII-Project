@@ -109,7 +109,7 @@ public class Main {
 									passengerMenuChoice = input.nextInt();
 									switch(passengerMenuChoice)
 									{
-										//Player account -> request a ride
+										//Passenger account -> request a ride
 										case 1:
 										{
 											System.out.println("Enter source area:");
