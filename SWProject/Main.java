@@ -7,27 +7,27 @@ public class Main {
 	public static void main(String[] args) {
 
 		Scanner input = new Scanner(System.in);
-        String mainMenuChoice = "0";
-        while(mainMenuChoice != "3")
+        int mainMenuChoice = 0;
+        while(mainMenuChoice != 3)
         {
             System.out.println("Welcome to Ogra app");
             System.out.println("1- Register new account");
             System.out.println("2- login to your account");
             System.out.println("3- Exit");
-            mainMenuChoice = input.nextLine();
+            mainMenuChoice = input.nextInt();
             switch(mainMenuChoice)
             {
                 //Main Menu -> Register new account
-                case "1":
+                case 1:
                 {
                     System.out.println("1- Passenger account");
                     System.out.println("2- Driver account");
                     System.out.println("3- Go back to Main Menu");
-                    String accountChoice = input.nextLine();
+                    int accountChoice = input.nextInt();
                     switch(accountChoice)
                     {
                         //Register -> Passenger account
-                        case "1":
+                        case 1:
                         {
                             PassengerInfo info = new PassengerInfo();
                             System.out.println("Enter your username:");
@@ -47,7 +47,7 @@ public class Main {
                             break;
                         }
                         //Register -> Driver account
-                        case "2":
+                        case 2:
                         {
                             DriverInfo info = new DriverInfo();
                             System.out.println("Enter your username:");
@@ -77,17 +77,17 @@ public class Main {
                     break;
                 }
                 //Main Menu -> login to your account
-                case "2":
+                case 2:
                 {
                     System.out.println("1- Passenger account");
                     System.out.println("2- Driver account");
 					System.out.println("3- Admin account");
                     System.out.println("4- Go back to Main Menu");
-                    String accountChoice = input.nextLine();
+                    int accountChoice = input.nextInt();
                     switch(accountChoice)
                     {
                         //Login -> Passenger account
-                        case "1":
+                        case 1:
                         {
 							try{
 								System.out.println("Enter your username:");
@@ -98,19 +98,19 @@ public class Main {
 								System.out.println("logged in successfully.");
 								System.out.println("------------------------------");
 	
-								String passengerMenuChoice = "0";
-								while(passengerMenuChoice != "3")
+								int passengerMenuChoice = 0;
+								while(passengerMenuChoice != 3)
 								{
 									//Passenger Menu
 									System.out.println("->Passenger Menu<-");
 									System.out.println("1- request a ride");
 									System.out.println("2- check received offers");
 									System.out.println("3- Logout to Main Menu");
-									passengerMenuChoice = input.nextLine();
+									passengerMenuChoice = input.nextInt();
 									switch(passengerMenuChoice)
 									{
 										//Passenger account -> request a ride
-										case "1":
+										case 1:
 										{
 											System.out.println("Enter source area:");
 											String source = input.next();
@@ -122,7 +122,7 @@ public class Main {
 											break;
 										}
 										//Passenger account -> check received offers
-										case "2":
+										case 2:
 										{
 											if (passenger.checkOffers()){
 												System.out.println("Choose the offer that you're interested in (Enter 0 if you want to go back): ");
@@ -130,23 +130,23 @@ public class Main {
 												if (offerNumber == 0)
 													break;
 	
-												String offerMenuChoice = "1";
-												while (offerMenuChoice == "1"){
+												int offerMenuChoice = 1;
+												while (offerMenuChoice == 1){
 													//offer action Menu
 													System.out.println("->Offer Actions<-");
 													System.out.println("1- Check driver rating");
 													System.out.println("2- accept offer");
 													System.out.println("3- deny offer");
 													System.out.println("4- Go back to Passenger Menu");
-													offerMenuChoice = input.nextLine();
+													offerMenuChoice = input.nextInt();
 													switch(offerMenuChoice)
 													{
 														//offer action Menu -> Check driver rating
-														case "1":
+														case 1:
 															System.out.println("Driver rating = " + passenger.checkDriverRating(passenger.getRecievedOffers().get(offerNumber-1).getItsDriver()));
 															break;
 														//offer action Menu -> accept offer
-														case "2":
+														case 2:
 															Driver driverOfOffer = (Driver)passenger.getRecievedOffers().get(offerNumber-1).getItsDriver();
 															passenger.acceptOffer(passenger.getRecievedOffers().get(offerNumber-1));
 															System.out.println("Offer accepted successfully.");
@@ -167,7 +167,7 @@ public class Main {
 															}
 															break;
 														//offer action Menu -> deny offer
-														case "3":
+														case 3:
 															passenger.denyOffer(passenger.getRecievedOffers().get(offerNumber-1));
 															System.out.println("Offer denied successfully.");
 															System.out.println("------------------------------");
@@ -181,7 +181,7 @@ public class Main {
 											break;
 										}
 										//Passenger account -> exit
-										case "3":
+										case 3:
 											break;
 										//Passenger account -> *wrong input*
 										default:
@@ -195,7 +195,7 @@ public class Main {
 							break;
                         }
                         //Login -> Driver account
-                        case "2":
+                        case 2:
                         {
                             try{
 								System.out.println("Enter your username:");
@@ -276,7 +276,7 @@ public class Main {
                             break;
                         }
 						//Login -> Admin account
-						case "3":
+						case 3:
 						{
 							try{
 								System.out.println("Enter your username:");
@@ -287,8 +287,8 @@ public class Main {
 								System.out.println("logged in successfully.");
 								System.out.println("------------------------------");
 	
-								String adminMenuChoice = "0";
-								while(adminMenuChoice != "4")
+								int adminMenuChoice = 0;
+								while(adminMenuChoice != 4)
 								{
 									//Admin Menu
 									System.out.println("->Admin Menu<-");
@@ -296,11 +296,11 @@ public class Main {
 									System.out.println("2- suspend a user");
 									System.out.println("3- unsuspend a user");
 									System.out.println("4- Logout to Main Menu");
-									adminMenuChoice = input.nextLine();
+									adminMenuChoice = input.nextInt();
 									switch(adminMenuChoice)
 									{
 										//Admin account -> List pending registration requests
-										case "1":
+										case 1:
 										{
 											if (admin.listPendingRegistrations()){
 												System.out.println("Choose the request that you're interested in (Enter 0 if you want to go back): ");
@@ -322,11 +322,11 @@ public class Main {
 											break;
 										}
 										//Admin account -> suspend a user
-										case "2":
+										case 2:
 										{
 											System.out.println("1- suspend passenger\t 2- suspend driver");
-											String suspendChoice = input.nextLine();
-											if (suspendChoice == "1"){
+											int suspendChoice = input.nextInt();
+											if (suspendChoice == 1){
 												System.out.println("Enter username of the passenger to suspend:");
 												String suspendUsername = input.next();
 												try {
@@ -336,7 +336,7 @@ public class Main {
 												} catch (Exception e) {
 													System.out.println(e.toString());
 												}
-											} else if (suspendChoice == "2"){
+											} else if (suspendChoice == 2){
 												System.out.println("Enter username of the driver to suspend:");
 												String suspendUsername = input.next();
 												try {
@@ -350,11 +350,11 @@ public class Main {
 											break;
 										}
 										//Admin account -> unsuspend a user
-										case "3":
+										case 3:
 										{
 											System.out.println("1- unsuspend passenger\t 2- unsuspend driver");
-											String unsuspendChoice = input.nextLine();
-											if (unsuspendChoice == "1"){
+											int unsuspendChoice = input.nextInt();
+											if (unsuspendChoice == 1){
 												System.out.println("Enter username of the passenger to unsuspend:");
 												String unsuspendUsername = input.next();
 												try {
@@ -364,7 +364,7 @@ public class Main {
 												} catch (Exception e) {
 													System.out.println(e.toString());
 												}
-											} else if (unsuspendChoice == "2"){
+											} else if (unsuspendChoice == 2){
 												System.out.println("Enter username of the driver to unsuspend:");
 												String unsuspendUsername = input.next();
 												try {
@@ -378,7 +378,7 @@ public class Main {
 											break;
 										}
 										//Admin account -> exit
-										case "4":
+										case 4:
 											break;
 										//Admin account -> *wrong input*
 										default:
@@ -398,7 +398,7 @@ public class Main {
                     break;
                 }
                 //Main Menu -> Exit
-                case "3":
+                case 3:
                     break;
                 //Main Menu -> *wrong input*
                 default:
