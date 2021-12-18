@@ -6,12 +6,18 @@ public class ArrayListStrategy implements ISystemDataStrategy {
     private ArrayList<IPassenger> passengers;
     private ArrayList<IDriver> drivers;
     private ArrayList<IRegistrationRequest> registrations;
+    private ArrayList<IOffer> offers;
+    private ArrayList<IRide> rides;
+    private ArrayList<IRating> ratings;
     private IAdmin admin;
 
     public ArrayListStrategy(){
         passengers = new ArrayList<IPassenger>();
         drivers = new ArrayList<IDriver>();
         registrations = new ArrayList<IRegistrationRequest>();
+        offers = new ArrayList<IOffer>();
+        rides = new ArrayList<IRide>();
+        ratings = new ArrayList<IRating>();
         admin = new Admin("admin", "0000");
     }
 
@@ -40,6 +46,21 @@ public class ArrayListStrategy implements ISystemDataStrategy {
     @Override
     public boolean addPassenger(IPassenger passenger) {
         return passengers.add(passenger);
+    }
+    
+    @Override
+    public boolean addOffer(IOffer offer) {
+        return offers.add(offer);
+    }
+
+    @Override
+    public boolean addRide(IRide ride) {
+        return rides.add(ride);
+    }
+
+    @Override
+    public boolean addRating(IRating rating) {
+        return ratings.add(rating);
     }
 
     @Override
@@ -83,6 +104,16 @@ public class ArrayListStrategy implements ISystemDataStrategy {
             }
         }
         return driversWithFavouriteArea;
+    }
+
+    @Override
+    public ArrayList<IOffer> getOffersOfPassenger(IPassenger passenger) {
+        ArrayList<IOffer> offersOfPassenger = new ArrayList<>();
+        for (IOffer iOffer : offers) {
+            if (iOffer.getItsRide().getItsPassenger().equals(passenger))
+                offersOfPassenger.add(iOffer);
+        }
+        return offersOfPassenger;
     }
 
     @Override

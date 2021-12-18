@@ -43,6 +43,21 @@ public class SystemData implements ISystemData {
     }
 
     @Override
+    public boolean addOffer(IOffer offer) {
+        return dataContainer.addOffer(offer);
+    }
+
+    @Override
+    public boolean addRide(IRide ride) {
+        return dataContainer.addRide(ride);
+    }
+
+    @Override
+    public boolean addRating(IRating rating) {
+        return dataContainer.addRating(rating);
+    }
+
+    @Override
     public IRegistrationRequest getRegistrationRequest(int index) {
         return dataContainer.getRegistrationRequest(index);
     }
@@ -70,5 +85,10 @@ public class SystemData implements ISystemData {
     @Override
     public ArrayList<IDriver> getDriversWithFavouriteArea(String area) {
         return dataContainer.getDriversWithFavouriteArea(area);
+    }
+
+    @Override
+    public ArrayList<IOffer> getOffersOfPassenger(IPassenger passenger) {
+        return dataContainer.getOffersOfPassenger(passenger);
     }
 }

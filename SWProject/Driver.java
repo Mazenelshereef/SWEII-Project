@@ -101,8 +101,8 @@ public class Driver implements IDriver {
 
     @Override
     public void suggestPrice(IRide ride, double price) {
-        Offer offer = new Offer(price, this);
-        Notifier.getInstance().notifyPassengerWithOffer(offer, ride);  
+        Offer offer = new Offer(price, this, ride);
+        Notifier.getInstance().notifyPassengerWithOffer(offer);  
         myOffers.add(offer); 
     }
 

@@ -143,12 +143,12 @@ public class Main {
 													{
 														//offer action Menu -> Check driver rating
 														case 1:
-															System.out.println("Driver rating = " + passenger.checkDriverRating(passenger.getRecievedOffers().get(offerNumber-1).getItsDriver()));
+															System.out.println("Driver rating = " + passenger.checkDriverRating(SystemData.getInstance().getOffersOfPassenger(passenger).get(offerNumber-1).getItsDriver()));
 															break;
 														//offer action Menu -> accept offer
 														case 2:
-															Driver driverOfOffer = (Driver)passenger.getRecievedOffers().get(offerNumber-1).getItsDriver();
-															passenger.acceptOffer(passenger.getRecievedOffers().get(offerNumber-1));
+															IDriver driverOfOffer = SystemData.getInstance().getOffersOfPassenger(passenger).get(offerNumber-1).getItsDriver();
+															passenger.acceptOffer(SystemData.getInstance().getOffersOfPassenger(passenger).get(offerNumber-1));
 															System.out.println("Offer accepted successfully.");
 															System.out.println("------------------------------");
 															System.out.println("1- Rate driver\t 2- continue");
@@ -168,7 +168,7 @@ public class Main {
 															break;
 														//offer action Menu -> deny offer
 														case 3:
-															passenger.denyOffer(passenger.getRecievedOffers().get(offerNumber-1));
+															passenger.denyOffer(SystemData.getInstance().getOffersOfPassenger(passenger).get(offerNumber-1));
 															System.out.println("Offer denied successfully.");
 															System.out.println("------------------------------");
 															break;

@@ -16,6 +16,7 @@ public class Notifier implements INotifier {
         for (IDriver driver : SystemData.getInstance().getDriversWithFavouriteArea(ride.getSource())){
             driver.recieveRideNotification(ride);
         }
+        SystemData.getInstance().addRide(ride);//new
     }
 
     @Override
@@ -24,9 +25,10 @@ public class Notifier implements INotifier {
     }
 
     @Override
-    public void notifyPassengerWithOffer(IOffer offer, IRide ride) {
-        ride.recieveOffer(offer);
-        ride.getItsPassenger().recieveOffer(offer);
+    public void notifyPassengerWithOffer(IOffer offer) {
+        /*ride.recieveOffer(offer);
+        ride.getItsPassenger().recieveOffer(offer);*/
+        SystemData.getInstance().addOffer(offer);
     }
 
 
