@@ -2,8 +2,7 @@ package SWProject;
 
 import java.util.ArrayList;
 
-public interface ISystemData {
-    public void setStrategy(ISystemDataStrategy strategy);
+public interface ISystemDataStrategy {
     public boolean displayAllRegistrations();
     public boolean addRegistrationRequest(IRegistrationRequest registrationRequest);
     public boolean addDriver(IDriver driver);
@@ -14,5 +13,4 @@ public interface ISystemData {
     public IAdmin getAdmin(String username);
     public ArrayList<IDriver> getDriversWithFavouriteArea(String area);
     public boolean removeRegisrationRequest(IRegistrationRequest registrationRequest);
-
 }
