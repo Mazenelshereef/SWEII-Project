@@ -117,8 +117,40 @@ public class ArrayListStrategy implements ISystemDataStrategy {
     }
 
     @Override
+    public ArrayList<IOffer> getOffersOfDriver(IDriver driver) {
+        ArrayList<IOffer> offersOfDriver = new ArrayList<>();
+        for (IOffer iOffer : offers) {
+            if (iOffer.getItsDriver().equals(driver))
+                offersOfDriver.add(iOffer);
+        }
+        return offersOfDriver;
+    }
+
+    @Override
+    public ArrayList<IRating> gerRatingsOfDriver(IDriver driver) {
+        ArrayList<IRating> ratingsOfDriver = new ArrayList<>();
+        for (IRating iRating : ratings) {
+            if (iRating.getItsDriver().equals(driver))
+                ratingsOfDriver.add(iRating);
+        }
+        return ratingsOfDriver;
+    }
+
+    @Override
+    public ArrayList<IRide> getRidesOfDriver(IDriver driver) {
+        ArrayList<IRide> ridesOfDriver = new ArrayList<>();
+        for (String favouriteArea : driver.getFavouriteAreas()) {
+            for (IRide ride : rides) {
+                if (ride.getSource().equals(favouriteArea))
+                    ridesOfDriver.add(ride);
+            }
+        }
+        return ridesOfDriver;
+    }
+    
+    @Override
     public boolean removeRegisrationRequest(IRegistrationRequest registrationRequest) {
         return registrations.remove(registrationRequest);
     }
-    
+
 }

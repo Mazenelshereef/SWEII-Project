@@ -8,17 +8,17 @@ public class Driver implements IDriver {
     private UserInfo personalInfo ;
     private ArrayList<String> favoriteAreas;
     private double averageRating;
-    private ArrayList<IRating> myRatings;
-    private ArrayList<IOffer> myOffers;
-    private ArrayList<IRide> favoriteAreaRides;
+    //private ArrayList<IRating> myRatings;
+    //private ArrayList<IOffer> myOffers;
+    //private ArrayList<IRide> favoriteAreaRides;
 
     public Driver(DriverInfo personalInfo) {
         this.personalInfo = personalInfo;
         favoriteAreas = new ArrayList<>();
         averageRating = 0;
-        myRatings = new ArrayList<> () ;
-        myOffers = new ArrayList<>() ;
-        favoriteAreaRides = new ArrayList<>() ;
+        //myRatings = new ArrayList<> () ;
+        //myOffers = new ArrayList<>() ;
+        //favoriteAreaRides = new ArrayList<>() ;
     }
 
     @Override
@@ -27,24 +27,22 @@ public class Driver implements IDriver {
     }
 
     public ArrayList<IOffer> getMyOffers() {
-        return myOffers;
-    }
-
-    public void setMyOffers(ArrayList<IOffer> myOffers) {
-        this.myOffers = myOffers;
+        return SystemData.getInstance().getOffersOfDriver(this);
     }
 
     public ArrayList<IRating> getMyRatings() {
-        return myRatings;
-    }
-
-    public void setMyRatings(ArrayList<IRating> myRatings) {
-        this.myRatings = myRatings;
+        return SystemData.getInstance().gerRatingsOfDriver(this);
     }
 
     public double getAverageRating() {
+        this.averageRating = 0;
+        ArrayList<IRating> myRatings = getMyRatings();
+        for(int i = 0 ; i < myRatings.size() ; ++i){
+            this.averageRating += myRatings.get(i).getValue() ;
+        }       
+        this.averageRating /= myRatings.size();
         return averageRating;
-    }
+    }//needs to be calculated when a rating is made
 
     public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
@@ -77,10 +75,10 @@ public class Driver implements IDriver {
                 + ", favoriteAreas=" + favoriteAreas + "]";
     }
 
-    @Override
+    /*@Override
     public void recieveRideNotification(IRide ride) {
         this.favoriteAreaRides.add(ride) ;        
-    }
+    }*/
 
     @Override
     public void addFavoriteArea(String name) {
@@ -89,6 +87,7 @@ public class Driver implements IDriver {
 
     @Override
     public boolean listRidesInFavouriteAreas() {
+        ArrayList<IRide> favoriteAreaRides = getFavouriteAreaRides();
         if (favoriteAreaRides.size() == 0){
             System.out.println("You have no ride notifications");
             return false;
@@ -103,11 +102,12 @@ public class Driver implements IDriver {
     public void suggestPrice(IRide ride, double price) {
         Offer offer = new Offer(price, this, ride);
         Notifier.getInstance().notifyPassengerWithOffer(offer);  
-        myOffers.add(offer); 
+        //myOffers.add(offer); 
     }
 
     @Override
     public void listPassengersRatings() {
+        ArrayList<IRating> myRatings = getMyRatings();
         if (myRatings.size() == 0){
             System.out.println("You have no ratings");
             return;
@@ -116,19 +116,15 @@ public class Driver implements IDriver {
             System.out.println((i+1) + ": " + myRatings.get(i).toString());
         }
     }
-
+/*
     @Override
     public void recieveRating(IRating rating) {
         this.myRatings.add(rating) ;
-        this.averageRating = 0;
-        for(int i = 0 ; i < myRatings.size() ; ++i){
-            this.averageRating += myRatings.get(i).getValue() ;
-        }       
-        this.averageRating /= myRatings.size() ;
     }
-
+*/
     @Override
     public void viewMyOffers() {
+        ArrayList<IOffer> myOffers = getMyOffers();
         if (myOffers.size() == 0){
             System.out.println("You have no offers");
             return;
@@ -140,7 +136,12 @@ public class Driver implements IDriver {
 
     @Override
     public ArrayList<IRide> getFavouriteAreaRides() {
-        return favoriteAreaRides;
+        return SystemData.getInstance().getRidesOfDriver(this);
+    }
+
+    @Override
+    public ArrayList<String> getFavouriteAreas() {
+        return favoriteAreas;
     }
 
 }

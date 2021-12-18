@@ -66,7 +66,7 @@ public class Passenger implements IPassenger {
 
     public void rateDriver(IDriver driver, int ratingValue) throws Exception {
         if (ratingValue >= 1 && ratingValue <= 5) {
-            Notifier.getInstance().notifyDriverWithRating(new Rating(ratingValue, this), driver);
+            Notifier.getInstance().notifyDriverWithRating(new Rating(ratingValue, this, driver));
         } else
             throw new Exception("please enter number between 1 and 5");
     }

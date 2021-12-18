@@ -1,8 +1,9 @@
 package SWProject;
 
 public class Rating implements IRating {
-    private IPassenger itsPassenger ;
-    private int value ;
+    private IPassenger itsPassenger;
+    private IDriver itsDriver;
+    private int value;
 
 
     public int getValue() {
@@ -22,8 +23,17 @@ public class Rating implements IRating {
         return "Rating [itsPassenger=" + itsPassenger.getPersonalInfo().getUsername() + ", value=" + value + "]";
     }
 
-    public Rating(int rate, IPassenger itsPassenger) {
+    public Rating(int rate, IPassenger itsPassenger, IDriver itsDriver) {
         value = rate;
         this.itsPassenger = itsPassenger;
+        this.itsDriver = itsDriver;
+    }
+    @Override
+    public IDriver getItsDriver() {
+        return itsDriver;
+    }
+    @Override
+    public void setItsDriver(IDriver driver) {
+        itsDriver = driver;
     }
 }

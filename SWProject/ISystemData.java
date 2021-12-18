@@ -17,6 +17,9 @@ public interface ISystemData {
     public IAdmin getAdmin(String username);
     public ArrayList<IDriver> getDriversWithFavouriteArea(String area);
     public ArrayList<IOffer> getOffersOfPassenger(IPassenger passenger);
+    public ArrayList<IOffer> getOffersOfDriver(IDriver driver);
+    public ArrayList<IRating> gerRatingsOfDriver(IDriver driver);
+    public ArrayList<IRide> getRidesOfDriver(IDriver driver);
     public boolean removeRegisrationRequest(IRegistrationRequest registrationRequest);
 
 }

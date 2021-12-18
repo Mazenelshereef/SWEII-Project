@@ -91,4 +91,19 @@ public class SystemData implements ISystemData {
     public ArrayList<IOffer> getOffersOfPassenger(IPassenger passenger) {
         return dataContainer.getOffersOfPassenger(passenger);
     }
+
+    @Override
+    public ArrayList<IOffer> getOffersOfDriver(IDriver driver) {
+        return dataContainer.getOffersOfDriver(driver);
+    }
+
+    @Override
+    public ArrayList<IRating> gerRatingsOfDriver(IDriver driver) {
+        return dataContainer.gerRatingsOfDriver(driver);
+    }
+
+    @Override
+    public ArrayList<IRide> getRidesOfDriver(IDriver driver) {
+        return dataContainer.getRidesOfDriver(driver);
+    }
 }
