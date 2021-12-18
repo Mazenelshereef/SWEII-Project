@@ -19,3 +19,14 @@
 /IRide.class
 /ISystemData.class
 /SystemData.class
+/AdminAuthenticator.class
+/DriverAuthenticator.class
+/ILoginAuthenticator.class
+/INotifier.class
+/IRegisterAuthenticator.class
+/IRegistrationRequest.class
+/ISuspendableUser.class
+/IUser.class
+/Notifier.class
+/PassengerAuthenticator.class
+/RegistrationRequest.class
