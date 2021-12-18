@@ -13,10 +13,8 @@ public class Notifier implements INotifier {
 
     @Override
     public void notifyDriversWithRide(IRide ride) {
-        for (IDriver driver : SystemData.getInstance().getDrivers()){
-            if (driver.hasFavouriteArea(ride.getSource())){
-                driver.recieveRideNotification(ride);
-            }
+        for (IDriver driver : SystemData.getInstance().getDriversWithFavouriteArea(ride.getSource())){
+            driver.recieveRideNotification(ride);
         }
     }
 

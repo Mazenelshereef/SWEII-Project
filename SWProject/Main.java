@@ -307,7 +307,7 @@ public class Main {
 												int requestNumber = input.nextInt();
 												if (requestNumber == 0)
 													break;
-												RegistrationRequest request = (RegistrationRequest) SystemData.getInstance().getRegistrations().get(requestNumber-1);
+												IRegistrationRequest request = SystemData.getInstance().getRegistrationRequest(requestNumber-1);
 												System.out.println(request);
 												System.out.println("1- varify request\t 2- deny request\t 3- continue");
 												int requestActionChoice = input.nextInt();
@@ -329,22 +329,24 @@ public class Main {
 											if (suspendChoice == 1){
 												System.out.println("Enter username of the passenger to suspend:");
 												String suspendUsername = input.next();
-												try {
-													admin.suspendUser((ISuspendableUser) PassengerAuthenticator.getInstance().search(suspendUsername));
+												IPassenger passengerToSuspend = SystemData.getInstance().getPassenger(suspendUsername);
+												if (passengerToSuspend != null){
+													admin.suspendUser(passengerToSuspend);
 													System.out.println("Account suspended successfully.");
                             						System.out.println("-----------------------------------");
-												} catch (Exception e) {
-													System.out.println(e.toString());
+												} else {
+													System.out.println("ERROR: This Passenger was not found");
 												}
 											} else if (suspendChoice == 2){
 												System.out.println("Enter username of the driver to suspend:");
 												String suspendUsername = input.next();
-												try {
-													admin.suspendUser((ISuspendableUser) DriverAuthenticator.getInstance().search(suspendUsername));
+												IDriver driverToSuspend = SystemData.getInstance().getDriver(suspendUsername);
+												if (driverToSuspend != null) {
+													admin.suspendUser(driverToSuspend);
 													System.out.println("Account suspended successfully.");
                             						System.out.println("-----------------------------------");
-												} catch (Exception e) {
-													System.out.println(e.toString());
+												} else {
+													System.out.println("ERROR: This Driver was not found");
 												}
 											}
 											break;
@@ -357,22 +359,24 @@ public class Main {
 											if (unsuspendChoice == 1){
 												System.out.println("Enter username of the passenger to unsuspend:");
 												String unsuspendUsername = input.next();
-												try {
-													admin.unsuspendUser((ISuspendableUser) PassengerAuthenticator.getInstance().search(unsuspendUsername));
+												IPassenger passengerToUnsuspend = SystemData.getInstance().getPassenger(unsuspendUsername);
+												if (passengerToUnsuspend != null) {
+													admin.unsuspendUser(passengerToUnsuspend);
 													System.out.println("Account unsuspended successfully.");
                             						System.out.println("-----------------------------------");
-												} catch (Exception e) {
-													System.out.println(e.toString());
+												} else {
+													System.out.println("ERROR: This Passenger was not found");
 												}
 											} else if (unsuspendChoice == 2){
 												System.out.println("Enter username of the driver to unsuspend:");
 												String unsuspendUsername = input.next();
-												try {
-													admin.unsuspendUser((ISuspendableUser) DriverAuthenticator.getInstance().search(unsuspendUsername));
+												IDriver driverToUnsuspend = SystemData.getInstance().getDriver(unsuspendUsername);
+												if (driverToUnsuspend != null) {
+													admin.unsuspendUser(driverToUnsuspend);
 													System.out.println("Account unsuspended successfully.");
                             						System.out.println("-----------------------------------");
-												} catch (Exception e) {
-													System.out.println(e.toString());
+												} else {
+													System.out.println("ERROR: This Driver was not found");
 												}
 											}
 											break;

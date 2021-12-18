@@ -21,24 +21,79 @@ public class SystemData implements ISystemData {
             instance = new SystemData();
         return instance;
     }   
-
+    
     @Override
-    public ArrayList<IRegistrationRequest> getRegistrations() {
-        return registrations;
+    public IAdmin getAdmin(String username) {
+        if (admin.getUsername().equals(username))
+            return admin;
+        return null;
     }
 
     @Override
-    public ArrayList<IDriver> getDrivers() {
-        return drivers;
+    public boolean addRegistrationRequest(IRegistrationRequest registrationRequest) {
+        return registrations.add(registrationRequest);
     }
 
     @Override
-    public ArrayList<IPassenger> getPassengers() {
-        return passengers;
+    public boolean addDriver(IDriver driver) {
+        return drivers.add(driver);
     }
 
     @Override
-    public IAdmin getAdmin() {
-        return admin;
+    public boolean addPassenger(IPassenger passenger) {
+        return passengers.add(passenger);
+    }
+
+    @Override
+    public IRegistrationRequest getRegistrationRequest(int index) {
+        return registrations.get(index);
+    }
+
+    @Override
+    public IDriver getDriver(String username) {
+        for (IDriver driver : drivers){
+            if (driver.getPersonalInfo().getUsername().equals(username)){
+                return driver;
+            }    
+        }
+        return null;
+    }
+
+    @Override
+    public IPassenger getPassenger(String username) {
+        for (IPassenger passenger : passengers){
+            if (passenger.getPersonalInfo().getUsername().equals(username)){
+                return passenger;
+            }              
+        }
+        return null;
+    }
+
+    @Override
+    public boolean removeRegisrationRequest(IRegistrationRequest registrationRequest) {
+        return registrations.remove(registrationRequest);
+    }
+
+    @Override
+    public boolean displayAllRegistrations() {
+        for(int i=0; i < registrations.size(); i++){
+            System.out.println((i+1) +":"+ registrations.get(i));
+        }
+        if (registrations.size() == 0)
+        {
+            return false;
+        }
+        return true; 
+    }
+
+    @Override
+    public ArrayList<IDriver> getDriversWithFavouriteArea(String area) {
+        ArrayList<IDriver> driversWithFavouriteArea = new ArrayList<>();
+        for (IDriver driver : drivers){
+            if (driver.hasFavouriteArea(area)){
+                driversWithFavouriteArea.add(driver);
+            }
+        }
+        return driversWithFavouriteArea;
     }
 }
