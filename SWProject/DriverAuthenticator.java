@@ -13,8 +13,10 @@ public class DriverAuthenticator implements ILoginAuthenticator, IRegisterAuthen
     }
 
     @Override
-    public boolean register(UserInfo userInfo) {
-        return SystemData.getInstance().addRegistrationRequest(new RegistrationRequest(userInfo));
+    public boolean register(UserInfo userInfo) throws Exception {
+        if (SystemData.getInstance().getDriver(userInfo.getUsername()) == null)
+            return SystemData.getInstance().addRegistrationRequest(new RegistrationRequest(userInfo));
+        throw new Exception("Error: the username already exists, please try another one");
     }
 
     @Override
@@ -34,8 +36,8 @@ public class DriverAuthenticator implements ILoginAuthenticator, IRegisterAuthen
         throw new Exception("ERROR: This Driver was not found");
     }
 
-    public void recieveRequestResponce(IRegistrationRequest registration, boolean isAccepted) {
-        if (isAccepted)
+    public void recieveRequestResponce(IRegistrationRequest registration) {
+        if (registration.isAccepted())
             SystemData.getInstance().addDriver(new Driver((DriverInfo)registration.getUserInfo()));
         SystemData.getInstance().removeRegisrationRequest(registration);
     }

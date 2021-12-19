@@ -41,9 +41,16 @@ public class Main {
                             System.out.println("Enter your phone number:");
                             info.setMobileNumber(input.next());
                             //register the account to the system
-                            PassengerAuthenticator.getInstance().register(info);
-                            System.out.println("Account registered successfully.");
-                            System.out.println("-----------------------------------");
+							try {
+								if (PassengerAuthenticator.getInstance().register(info)) {
+									System.out.println("Account registered successfully.");
+                          	  		System.out.println("-----------------------------------");
+								} else {
+									System.out.println("Something went wrong!. Please try again.");
+								}
+							} catch (Exception e) {
+								System.out.println(e.toString());
+							}
                             break;
                         }
                         //Register -> Driver account
@@ -65,9 +72,16 @@ public class Main {
 							System.out.println("Enter your national ID:");
                             info.setNationalId(input.next());
                             //register the account to the system
-                            DriverAuthenticator.getInstance().register(info);
-                            System.out.println("Account registeration request created successfully, please wait for an admin to varify it.");
-                            System.out.println("-----------------------------------");
+							try {
+								if (DriverAuthenticator.getInstance().register(info)) {
+									System.out.println("Account registeration request created successfully, please wait for an admin to varify it.");
+									System.out.println("-----------------------------------");
+								} else {
+									System.out.println("Something went wrong!. Please try again.");
+								}
+							} catch (Exception e) {
+								System.out.println(e.toString());
+							}
                             break;
                         }
 						//Register -> go back

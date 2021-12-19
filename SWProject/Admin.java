@@ -39,12 +39,14 @@ public class Admin implements IAdmin {
 
         @Override
         public void verifyDriverRegistration(IRegistrationRequest request){
-            DriverAuthenticator.getInstance().recieveRequestResponce(request, true);
+            request.setAccepted(true);
+            DriverAuthenticator.getInstance().recieveRequestResponce(request);
         }
 
         @Override
         public void denyDriverRegistration(IRegistrationRequest request){
-            DriverAuthenticator.getInstance().recieveRequestResponce(request, false);        }
+            request.setAccepted(false);
+            DriverAuthenticator.getInstance().recieveRequestResponce(request);        }
 
         @Override
         public void suspendUser(ISuspendableUser user){
