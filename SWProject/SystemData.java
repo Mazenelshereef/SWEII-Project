@@ -66,6 +66,11 @@ public class SystemData implements ISystemData {
     }
 
     @Override
+    public IRegistrationRequest getRegistrationRequest(String username) {
+        return dataContainer.getRegistrationRequest(username);
+    }
+
+    @Override
     public IDriver getDriver(String username) {
         return dataContainer.getDriver(username);
     }

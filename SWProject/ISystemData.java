@@ -12,6 +12,7 @@ public interface ISystemData {
     public boolean addRide(IRide ride);
     public boolean addRating(IRating rating);
     public IRegistrationRequest getRegistrationRequest(int index);
+    public IRegistrationRequest getRegistrationRequest(String username);
     public IDriver getDriver(String username);
     public IPassenger getPassenger(String username);
     public IAdmin getAdmin(String username);

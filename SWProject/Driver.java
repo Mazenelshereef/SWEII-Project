@@ -31,14 +31,8 @@ public class Driver implements IDriver {
     }
 
     public double getAverageRating() {
-        this.averageRating = 0;
-        ArrayList<IRating> myRatings = getMyRatings();
-        for(int i = 0 ; i < myRatings.size() ; ++i){
-            this.averageRating += myRatings.get(i).getValue() ;
-        }       
-        this.averageRating /= myRatings.size();
         return averageRating;
-    }//needs to be calculated when a rating is made
+    }
 
     public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
@@ -153,6 +147,16 @@ public class Driver implements IDriver {
             System.out.println((i+1) + ": " + notifications.get(i));
         }
         return true;
+    }
+
+    @Override
+    public void updateAverageRating() {
+        this.averageRating = 0;
+        ArrayList<IRating> myRatings = getMyRatings();
+        for(int i = 0 ; i < myRatings.size() ; ++i){
+            this.averageRating += myRatings.get(i).getValue() ;
+        }       
+        this.averageRating /= myRatings.size();        
     }
 
 }

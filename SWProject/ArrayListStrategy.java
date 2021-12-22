@@ -69,6 +69,15 @@ public class ArrayListStrategy implements ISystemDataStrategy {
     }
 
     @Override
+    public IRegistrationRequest getRegistrationRequest(String username) {
+        for (IRegistrationRequest registrationRequest : registrations) {
+            if (registrationRequest.getUserInfo().getUsername().equals(username))
+                return registrationRequest;
+        }
+        return null;
+    }
+
+    @Override
     public IDriver getDriver(String username) {
         for (IDriver driver : drivers){
             if (driver.getPersonalInfo().getUsername().equals(username)){

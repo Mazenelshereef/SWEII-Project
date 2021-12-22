@@ -14,7 +14,7 @@ public class DriverAuthenticator implements ILoginAuthenticator, IRegisterAuthen
 
     @Override
     public boolean register(UserInfo userInfo) throws Exception {
-        if (SystemData.getInstance().getDriver(userInfo.getUsername()) == null)
+        if (SystemData.getInstance().getDriver(userInfo.getUsername()) == null && SystemData.getInstance().getRegistrationRequest(userInfo.getUsername()) == null)
             return SystemData.getInstance().addRegistrationRequest(new RegistrationRequest(userInfo));
         throw new Exception("Error: the username already exists, please try another one");
     }
@@ -32,6 +32,8 @@ public class DriverAuthenticator implements ILoginAuthenticator, IRegisterAuthen
             else{
                 throw new Exception("Error: Incorrect password, please check password and try again");
             } 
+        } else if (SystemData.getInstance().getRegistrationRequest(username) != null){
+            throw new Exception("ERROR: This Driver isn't varified yet. Please wait for an admin to varify it.");
         }
         throw new Exception("ERROR: This Driver was not found");
     }

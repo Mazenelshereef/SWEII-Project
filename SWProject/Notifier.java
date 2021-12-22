@@ -21,6 +21,7 @@ public class Notifier implements INotifier {
     @Override
     public void notifyDriverWithRating(IRating rating) {
         rating.getItsDriver().recieveNotification("(Rating recieved): " + rating.toString());
+        rating.getItsDriver().updateAverageRating();
     }
 
     @Override
