@@ -8,17 +8,13 @@ public class Driver implements IDriver {
     private UserInfo personalInfo ;
     private ArrayList<String> favoriteAreas;
     private double averageRating;
-    //private ArrayList<IRating> myRatings;
-    //private ArrayList<IOffer> myOffers;
-    //private ArrayList<IRide> favoriteAreaRides;
+    private ArrayList<String> notifications;
 
     public Driver(DriverInfo personalInfo) {
         this.personalInfo = personalInfo;
         favoriteAreas = new ArrayList<>();
         averageRating = 0;
-        //myRatings = new ArrayList<> () ;
-        //myOffers = new ArrayList<>() ;
-        //favoriteAreaRides = new ArrayList<>() ;
+        notifications = new ArrayList<>();
     }
 
     @Override
@@ -75,11 +71,6 @@ public class Driver implements IDriver {
                 + ", favoriteAreas=" + favoriteAreas + "]";
     }
 
-    /*@Override
-    public void recieveRideNotification(IRide ride) {
-        this.favoriteAreaRides.add(ride) ;        
-    }*/
-
     @Override
     public void addFavoriteArea(String name) {
         favoriteAreas.add(name) ;        
@@ -89,7 +80,7 @@ public class Driver implements IDriver {
     public boolean listRidesInFavouriteAreas() {
         ArrayList<IRide> favoriteAreaRides = getFavouriteAreaRides();
         if (favoriteAreaRides.size() == 0){
-            System.out.println("You have no ride notifications");
+            System.out.println("You have no ride requests");
             return false;
         }     
         for(int i = 0 ; i < favoriteAreaRides.size() ; ++i){
@@ -100,9 +91,7 @@ public class Driver implements IDriver {
 
     @Override
     public void suggestPrice(IRide ride, double price) {
-        Offer offer = new Offer(price, this, ride);
-        Notifier.getInstance().notifyPassengerWithOffer(offer);  
-        //myOffers.add(offer); 
+        SystemData.getInstance().addOffer(new Offer(price, this, ride));
     }
 
     @Override
@@ -116,12 +105,7 @@ public class Driver implements IDriver {
             System.out.println((i+1) + ": " + myRatings.get(i).toString());
         }
     }
-/*
-    @Override
-    public void recieveRating(IRating rating) {
-        this.myRatings.add(rating) ;
-    }
-*/
+
     @Override
     public void viewMyOffers() {
         ArrayList<IOffer> myOffers = getMyOffers();
@@ -140,8 +124,35 @@ public class Driver implements IDriver {
     }
 
     @Override
+    public void recieveNotification(String notification) {
+        notifications.add(notification);
+    }
+
+    @Override
+    public String getNotification(int index) {
+        return notifications.get(index);
+    }
+
+    @Override
+    public void removeNotification(int index) {
+        notifications.remove(index);
+    }
+
+    @Override
     public ArrayList<String> getFavouriteAreas() {
-        return favoriteAreas;
+        return new ArrayList<String>(favoriteAreas);
+    }
+
+    @Override
+    public boolean viewNotifications() {
+        if (notifications.size() == 0){
+            System.out.println("You have no notifications");
+            return false;
+        }     
+        for(int i = 0 ; i < notifications.size() ; i++){
+            System.out.println((i+1) + ": " + notifications.get(i));
+        }
+        return true;
     }
 
 }
