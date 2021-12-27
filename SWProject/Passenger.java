@@ -22,8 +22,8 @@ public class Passenger implements IPassenger {
     }
 
     @Override
-    public void requestRide(String source, String destination) {
-        SystemData.getInstance().addRide(new Ride(source, destination, this));
+    public void requestRide(String source, String destination, int noOfPassengers) {
+        SystemData.getInstance().addRide(new Ride(source, destination, noOfPassengers, this));
     }
 
     @Override

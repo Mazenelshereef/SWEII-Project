@@ -3,12 +3,14 @@ package SWProject;
 public class Ride implements IRide {
     private String source;
     private String destination;
+    private int noOfPassengers;
     private IPassenger itsPassenger;
     //private ArrayList<IOffer> offers;
 
-    public Ride(String source, String destination, IPassenger itsPassenger) {
+    public Ride(String source, String destination, int noOfPassengers, IPassenger itsPassenger) {
         this.source = source;
         this.destination = destination;
+        this.noOfPassengers = noOfPassengers;
         this.itsPassenger = itsPassenger;
         //offers = new ArrayList<>();
     }
@@ -32,6 +34,16 @@ public class Ride implements IRide {
     @Override
     public String getDestination() {
         return destination;
+    }
+    
+    @Override
+    public void setNoOfPassengers(int noOfPassengers) {
+        this.noOfPassengers = noOfPassengers;
+    }
+
+    @Override
+    public int getNoOfPassengers() {
+        return noOfPassengers;
     }
 
     @Override
@@ -59,6 +71,7 @@ public class Ride implements IRide {
         return "Ride: {" +
                 "source='" + source + '\'' +
                 ", distenation='" + destination + '\'' +
+                ", noOfPassengers='" + noOfPassengers + '\'' +
                 ", itsPassenger=" + itsPassenger.getPersonalInfo().getUsername() +
                 /*", offers=" + offers +*/
                 '}';

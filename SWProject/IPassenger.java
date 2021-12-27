@@ -8,7 +8,7 @@ public interface IPassenger extends ISuspendableUser {
     public void denyOffer(IOffer offer);
     public boolean checkOffers();
     public void rateDriver(IDriver driver, int ratingValue) throws Exception;
-    public void requestRide(String s, String d);
+    public void requestRide(String s, String d, int noOfPassengers);
     public void recieveNotification(String notification);
     public String getNotification(int index);
     public void removeNotification(int index);
