@@ -22,5 +22,6 @@ public interface ISystemData {
     public ArrayList<IRating> gerRatingsOfDriver(IDriver driver);
     public ArrayList<IRide> getRidesOfDriver(IDriver driver);
     public boolean removeRegisrationRequest(IRegistrationRequest registrationRequest);
-
+    public boolean containsRideOfPassenger(IPassenger passenger);
+    public boolean containsDiscountArea(String source);
 }

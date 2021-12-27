@@ -1,6 +1,7 @@
 package SWProject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Passenger implements IPassenger {
     private UserInfo personalInfo;
@@ -23,7 +24,22 @@ public class Passenger implements IPassenger {
 
     @Override
     public void requestRide(String source, String destination, int noOfPassengers) {
-        SystemData.getInstance().addRide(new Ride(source, destination, noOfPassengers, this));
+        IRide ride = new Ride(source, destination, noOfPassengers, this);
+
+        //TODO: Discounts logic shouldn't be handled in Passenger
+        if (SystemData.getInstance().containsRideOfPassenger(this))
+            ride = new FirstRideDiscount(ride);
+        if (SystemData.getInstance().containsDiscountArea(source))
+            ride = new AreaDiscount(ride);
+        if (noOfPassengers == 2)
+            ride = new TwoPassengersDiscount(ride);
+        if (/*TODO: publicHoliday*/true)
+            ride = new HolidayDiscount(ride);
+        if (Calendar.getInstance().get(Calendar.MONTH) == personalInfo.getMonthOfBirth() 
+            && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) == personalInfo.getDayOfBirth())
+            ride = new BirthdayDiscount(ride);
+            
+        SystemData.getInstance().addRide(ride);
     }
 
     @Override

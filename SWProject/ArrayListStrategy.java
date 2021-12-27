@@ -162,4 +162,19 @@ public class ArrayListStrategy implements ISystemDataStrategy {
         return registrations.remove(registrationRequest);
     }
 
+    @Override
+    public boolean containsRideOfPassenger(IPassenger passenger) {
+        for (IRide ride : rides) {
+            if (ride.getItsPassenger() == passenger)
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean containsDiscountArea(String source) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
 }

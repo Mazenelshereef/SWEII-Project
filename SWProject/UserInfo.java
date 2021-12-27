@@ -3,6 +3,7 @@ package SWProject;
 public abstract class UserInfo {
 
         protected String username, mobileNumber, email, password;
+        protected int yearOfBirth, monthOfBirth, dayOfBirth;
         protected boolean isSuspended;
 
         public void setEmail(String email) {
@@ -25,6 +26,18 @@ public abstract class UserInfo {
             this.username = username;
         }
 
+        public void setDayOfBirth(int dayOfBirth) {
+            this.dayOfBirth = dayOfBirth;
+        }
+
+        public void setMonthOfBirth(int monthOfBirth) {
+            this.monthOfBirth = monthOfBirth;
+        }
+
+        public void setYearOfBirth(int yearOfBirth) {
+            this.yearOfBirth = yearOfBirth;
+        }
+
         public String getEmail() {
             return email;
         }
@@ -43,6 +56,18 @@ public abstract class UserInfo {
 
         public boolean getSuspended() {
             return isSuspended;
+        }
+
+        public int getDayOfBirth() {
+            return dayOfBirth;
+        }
+
+        public int getMonthOfBirth() {
+            return monthOfBirth;
+        }
+
+        public int getYearOfBirth() {
+            return yearOfBirth;
         }
     }
 

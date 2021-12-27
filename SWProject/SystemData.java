@@ -114,4 +114,14 @@ public class SystemData implements ISystemData {
     public ArrayList<IRide> getRidesOfDriver(IDriver driver) {
         return dataContainer.getRidesOfDriver(driver);
     }
+
+    @Override
+    public boolean containsRideOfPassenger(IPassenger passenger) {
+        return dataContainer.containsRideOfPassenger(passenger);
+    }
+
+    @Override
+    public boolean containsDiscountArea(String source) {
+        return dataContainer.containsDiscountArea(source);
+    }
 }
