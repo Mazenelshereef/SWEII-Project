@@ -7,9 +7,10 @@ public interface IRide {
     public String getDestination();
     public void setNoOfPassengers(int noOfPassengers);
     public int getNoOfPassengers();
-    //public void setOffers(ArrayList<IOffer> offers);
-    //public ArrayList<IOffer> getOffers();
     public void setItsPassenger(IPassenger itsPassenger);
     public IPassenger getItsPassenger();
-    //public void recieveOffer(IOffer offer);
+    public void setPrice(double price);
+    public double getPrice();
+    //public double getDiscount();
+    public double getCost(double price);
 }

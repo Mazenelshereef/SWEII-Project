@@ -130,7 +130,9 @@ public class Main {
 											String source = input.next();
 											System.out.println("Enter destination area:");
 											String destination = input.next();
-											passenger.requestRide(source, destination);
+											System.out.println("How many passengers?:");
+											int noOfPassengers = input.nextInt();
+											passenger.requestRide(source, destination, noOfPassengers);
 											System.out.println("Ride requested successfully.");
 											System.out.println("------------------------------");
 											break;

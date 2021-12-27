@@ -5,14 +5,14 @@ public class Ride implements IRide {
     private String destination;
     private int noOfPassengers;
     private IPassenger itsPassenger;
-    //private ArrayList<IOffer> offers;
+    private double price;
 
     public Ride(String source, String destination, int noOfPassengers, IPassenger itsPassenger) {
         this.source = source;
         this.destination = destination;
         this.noOfPassengers = noOfPassengers;
         this.itsPassenger = itsPassenger;
-        //offers = new ArrayList<>();
+        this.price = -1;
     }
 
     @Override
@@ -55,17 +55,7 @@ public class Ride implements IRide {
     public void setItsPassenger(IPassenger itsPassenger) {
         this.itsPassenger = itsPassenger;
     }
-    /*
-    @Override
-    public void setOffers(ArrayList<IOffer> offers) {
-        this.offers = offers;
-    }
 
-    @Override
-    public ArrayList<IOffer> getOffers() {
-        return offers;
-    }
-    */
     @Override
     public String toString() {
         return "Ride: {" +
@@ -73,13 +63,27 @@ public class Ride implements IRide {
                 ", distenation='" + destination + '\'' +
                 ", noOfPassengers='" + noOfPassengers + '\'' +
                 ", itsPassenger=" + itsPassenger.getPersonalInfo().getUsername() +
-                /*", offers=" + offers +*/
                 '}';
     }
+ 
     /*
     @Override
-    public void recieveOffer(IOffer offer) {
-        offers.add(offer);
+    public double getDiscount() {
+        return 0;
     }
-    */
+*/
+    @Override
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public double getCost(double price) {
+        return price;
+    }
 }
