@@ -10,6 +10,8 @@ public class Driver implements IDriver {
     private double averageRating;
     private ArrayList<String> notifications;
     private double balance;
+    private IRide currentRide ;
+    private String output ;
 
     public Driver(DriverInfo personalInfo) {
         this.personalInfo = personalInfo;
@@ -17,6 +19,16 @@ public class Driver implements IDriver {
         averageRating = 0;
         notifications = new ArrayList<>();
         balance = 0;
+        currentRide = null ;
+        output = "" ;
+    }
+
+    public IRide getCurrentRide() {
+        return currentRide;
+    }
+
+    public void setCurrentRide(IRide currentRide) {
+        this.currentRide = currentRide;
     }
 
     @Override
@@ -76,11 +88,11 @@ public class Driver implements IDriver {
     public boolean listRidesInFavouriteAreas() {
         ArrayList<IRide> favoriteAreaRides = getFavouriteAreaRides();
         if (favoriteAreaRides.size() == 0){
-            System.out.println("You have no ride requests");
+            output += "You have no ride requests";
             return false;
         }     
         for(int i = 0 ; i < favoriteAreaRides.size() ; ++i){
-            System.out.println((i+1) + ": " + favoriteAreaRides.get(i).toString());
+            output += (i+1) + ": " + favoriteAreaRides.get(i).toString();
         }
         return true;
     }
@@ -94,11 +106,11 @@ public class Driver implements IDriver {
     public void listPassengersRatings() {
         ArrayList<IRating> myRatings = getMyRatings();
         if (myRatings.size() == 0){
-            System.out.println("You have no ratings");
+            output += "You have no ratings";
             return;
         }   
         for(int i = 0 ; i < myRatings.size() ; ++i){
-            System.out.println((i+1) + ": " + myRatings.get(i).toString());
+            output += (i+1) + ": " + myRatings.get(i).toString();
         }
     }
 
@@ -106,11 +118,11 @@ public class Driver implements IDriver {
     public void viewMyOffers() {
         ArrayList<IOffer> myOffers = getMyOffers();
         if (myOffers.size() == 0){
-            System.out.println("You have no offers");
+            output += "You have no offers";
             return;
         }   
         for(int i = 0 ; i < myOffers.size() ; ++i){
-            System.out.println((i+1) + ": " + myOffers.get(i).toString());
+            output += (i+1) + ": " + myOffers.get(i).toString();
         }
     }
 
@@ -142,11 +154,11 @@ public class Driver implements IDriver {
     @Override
     public boolean viewNotifications() {
         if (notifications.size() == 0){
-            System.out.println("You have no notifications");
+            output += "You have no notifications";
             return false;
         }     
         for(int i = 0 ; i < notifications.size() ; i++){
-            System.out.println((i+1) + ": " + notifications.get(i));
+            output += (i+1) + ": " + notifications.get(i);
         }
         return true;
     }
@@ -169,6 +181,15 @@ public class Driver implements IDriver {
     @Override
     public void addBalance(double amount) {
         balance += amount;        
+    }
+
+    public void reachUserLocation(IRide ride){
+        ride.addEvent("Captain arrived to user location", this.getPersonalInfo().getUsername() + ride.getItsPassenger().getPersonalInfo().getUsername());
+    }
+
+    public void reachUserDistination(IRide ride){
+        ride.addEvent("Captian arrived to user destination", this.getPersonalInfo().getUsername() + " " + ride.getItsPassenger().getPersonalInfo().getUsername());
+        currentRide = null ;
     }
 
 }
