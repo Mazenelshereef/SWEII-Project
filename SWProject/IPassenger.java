@@ -3,8 +3,11 @@ package SWProject;
 public interface IPassenger extends ISuspendableUser {
     public void setPersonalInfo(UserInfo personalInfo);
     public UserInfo getPersonalInfo();
+    public double getBalance();
+    public void addBalance(double amount);
+    public boolean takeBalance(double amount);
     public double checkDriverRating(IDriver driver);
-    public void acceptOffer(IOffer offer);
+    public void acceptOffer(IOffer offer) throws Exception;
     public void denyOffer(IOffer offer);
     public boolean checkOffers();
     public void rateDriver(IDriver driver, int ratingValue) throws Exception;

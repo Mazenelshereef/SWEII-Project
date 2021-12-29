@@ -11,6 +11,6 @@ public class test {
         ride.setPrice(50);
         System.out.println(ride.getCost(ride.getPrice()));
         System.out.println(ride.getDestination());*/
-        System.out.println(Calendar.getInstance().get(Calendar.MONTH));
+        System.out.println(Calendar.getInstance().get(Calendar.DAY_OF_WEEK_IN_MONTH));
     }
 }

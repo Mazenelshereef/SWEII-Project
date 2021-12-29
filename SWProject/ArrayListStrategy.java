@@ -9,6 +9,7 @@ public class ArrayListStrategy implements ISystemDataStrategy {
     private ArrayList<IOffer> offers;
     private ArrayList<IRide> rides;
     private ArrayList<IRating> ratings;
+    private ArrayList<String> discountAreas;
     private IAdmin admin;
 
     public ArrayListStrategy(){
@@ -18,6 +19,7 @@ public class ArrayListStrategy implements ISystemDataStrategy {
         offers = new ArrayList<IOffer>();
         rides = new ArrayList<IRide>();
         ratings = new ArrayList<IRating>();
+        discountAreas = new ArrayList<>();
         admin = new Admin("admin", "0000");
     }
 
@@ -172,9 +174,22 @@ public class ArrayListStrategy implements ISystemDataStrategy {
     }
 
     @Override
-    public boolean containsDiscountArea(String source) {
-        // TODO Auto-generated method stub
+    public boolean containsDiscountArea(String destination) {
+        for (String area : discountAreas) {
+            if (area.equals(destination))
+                return true;
+        }
         return false;
+    }
+
+    @Override
+    public boolean addDiscountArea(String area) {
+        return discountAreas.add(area);
+    }
+
+    @Override
+    public boolean removeDiscountArea(String area) {
+        return discountAreas.remove(area);
     }
 
 }

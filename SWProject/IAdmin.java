@@ -10,4 +10,5 @@ public interface IAdmin extends IUser{
     public void suspendUser(ISuspendableUser user);
     public void unsuspendUser(ISuspendableUser user);
     public boolean listPendingRegistrations();
+    public void addDiscountToArea(String area);
 }

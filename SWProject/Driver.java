@@ -9,12 +9,14 @@ public class Driver implements IDriver {
     private ArrayList<String> favoriteAreas;
     private double averageRating;
     private ArrayList<String> notifications;
+    private double balance;
 
     public Driver(DriverInfo personalInfo) {
         this.personalInfo = personalInfo;
         favoriteAreas = new ArrayList<>();
         averageRating = 0;
         notifications = new ArrayList<>();
+        balance = 0;
     }
 
     @Override
@@ -157,6 +159,16 @@ public class Driver implements IDriver {
             this.averageRating += myRatings.get(i).getValue() ;
         }       
         this.averageRating /= myRatings.size();        
+    }
+
+    @Override
+    public double getBalance() {
+        return balance;
+    }
+
+    @Override
+    public void addBalance(double amount) {
+        balance += amount;        
     }
 
 }

@@ -57,4 +57,9 @@ public class Admin implements IAdmin {
         public void unsuspendUser(ISuspendableUser user){
             user.setSuspended(false);
         }
+
+        @Override
+        public void addDiscountToArea(String area) {
+            SystemData.getInstance().addDiscountArea(area);
+        }
 }

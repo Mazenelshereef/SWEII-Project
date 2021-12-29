@@ -121,7 +121,17 @@ public class SystemData implements ISystemData {
     }
 
     @Override
-    public boolean containsDiscountArea(String source) {
-        return dataContainer.containsDiscountArea(source);
+    public boolean containsDiscountArea(String destination) {
+        return dataContainer.containsDiscountArea(destination);
+    }
+
+    @Override
+    public boolean addDiscountArea(String area) {
+        return dataContainer.addDiscountArea(area);
+    }
+
+    @Override
+    public boolean removeDiscountArea(String area) {
+        return dataContainer.removeDiscountArea(area);
     }
 }

@@ -22,4 +22,6 @@ public interface IDriver extends ISuspendableUser {
     public void removeNotification(int index);
     public boolean viewNotifications();
     public void updateAverageRating();
+    public double getBalance();
+    public void addBalance(double amount);
 }

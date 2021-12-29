@@ -11,6 +11,7 @@ public interface ISystemData {
     public boolean addOffer(IOffer offer);
     public boolean addRide(IRide ride);
     public boolean addRating(IRating rating);
+    public boolean addDiscountArea(String area);
     public IRegistrationRequest getRegistrationRequest(int index);
     public IRegistrationRequest getRegistrationRequest(String username);
     public IDriver getDriver(String username);
@@ -22,6 +23,7 @@ public interface ISystemData {
     public ArrayList<IRating> gerRatingsOfDriver(IDriver driver);
     public ArrayList<IRide> getRidesOfDriver(IDriver driver);
     public boolean removeRegisrationRequest(IRegistrationRequest registrationRequest);
+    public boolean removeDiscountArea(String area);
     public boolean containsRideOfPassenger(IPassenger passenger);
-    public boolean containsDiscountArea(String source);
+    public boolean containsDiscountArea(String destination);
 }

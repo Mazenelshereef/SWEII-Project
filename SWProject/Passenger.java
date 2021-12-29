@@ -1,15 +1,16 @@
 package SWProject;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class Passenger implements IPassenger {
     private UserInfo personalInfo;
     private ArrayList<String> notifications;
+    private double balance;
 
     public Passenger(UserInfo personalInfo) {
         this.personalInfo = personalInfo;
         notifications = new ArrayList<>();
+        balance = 0;
     }
 
     @Override
@@ -23,23 +24,28 @@ public class Passenger implements IPassenger {
     }
 
     @Override
-    public void requestRide(String source, String destination, int noOfPassengers) {
-        IRide ride = new Ride(source, destination, noOfPassengers, this);
+    public double getBalance() {
+        return balance;
+    }
 
-        //TODO: Discounts logic shouldn't be handled in Passenger
-        if (SystemData.getInstance().containsRideOfPassenger(this))
-            ride = new FirstRideDiscount(ride);
-        if (SystemData.getInstance().containsDiscountArea(source))
-            ride = new AreaDiscount(ride);
-        if (noOfPassengers == 2)
-            ride = new TwoPassengersDiscount(ride);
-        if (/*TODO: publicHoliday*/true)
-            ride = new HolidayDiscount(ride);
-        if (Calendar.getInstance().get(Calendar.MONTH) == personalInfo.getMonthOfBirth() 
-            && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) == personalInfo.getDayOfBirth())
-            ride = new BirthdayDiscount(ride);
-            
-        SystemData.getInstance().addRide(ride);
+    @Override
+    public void addBalance(double amount) {
+        balance += amount;        
+    }
+
+    @Override
+    public boolean takeBalance(double amount) {
+        if (amount <= balance)
+        {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void requestRide(String source, String destination, int noOfPassengers) {
+        RideOfferFacade.getInstance().requestRide(new Ride(source, destination, noOfPassengers, this));
     }
 
     @Override
@@ -48,15 +54,14 @@ public class Passenger implements IPassenger {
     }
 
     @Override
-    public void acceptOffer(IOffer offer) {
-        offer.setAccepted(true);
-        //recievedOffers.remove(offer);
+    public void acceptOffer(IOffer offer) throws Exception {
+        if(!RideOfferFacade.getInstance().acceptOffer(offer))
+            throw new Exception("ERROR: You don't have enough balance!");
     }
 
     @Override
     public void denyOffer(IOffer offer) {
-        offer.setAccepted(false);
-        //recievedOffers.remove(offer);
+        RideOfferFacade.getInstance().denyOffer(offer);
     }
 
     @Override
@@ -110,5 +115,4 @@ public class Passenger implements IPassenger {
         }
         return true;
     }
-
 }
