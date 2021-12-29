@@ -6,6 +6,8 @@ public interface IDriver extends ISuspendableUser {
     public UserInfo getPersonalInfo();
     public boolean hasFavouriteArea(String area);
     public void setPersonalInfo(UserInfo info);
+    public void setCurrentRide(IRide currentRide);
+    public IRide getCurrentRide();
     public void addFavoriteArea(String name) ;
     public boolean listRidesInFavouriteAreas();
     public void suggestPrice(IRide ride , double price) ;

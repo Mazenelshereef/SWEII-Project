@@ -35,6 +35,7 @@ public class RideOfferFacade {
         {
             offer.setAccepted(true);
             offer.getItsDriver().addBalance(offer.getPrice());
+            offer.getItsDriver().setCurrentRide(offer.getItsRide());
             return true;
         }
         return false;

@@ -10,6 +10,7 @@ public class Driver implements IDriver {
     private double averageRating;
     private ArrayList<String> notifications;
     private double balance;
+    private IRide currentRide;
 
     public Driver(DriverInfo personalInfo) {
         this.personalInfo = personalInfo;
@@ -17,11 +18,18 @@ public class Driver implements IDriver {
         averageRating = 0;
         notifications = new ArrayList<>();
         balance = 0;
+        currentRide = null;
     }
 
     @Override
     public void setSuspended(boolean isSuspended) {
         personalInfo.setSuspended(isSuspended);
+    }
+    public void setCurrentRide(IRide currentRide) {
+        this.currentRide = currentRide;
+    }
+    public IRide getCurrentRide() {
+        return currentRide;
     }
 
     public ArrayList<IOffer> getMyOffers() {

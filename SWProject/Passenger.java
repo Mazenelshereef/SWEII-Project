@@ -66,12 +66,13 @@ public class Passenger implements IPassenger {
 
     @Override
     public boolean checkOffers() {
+        String output="";
         if (SystemData.getInstance().getOffersOfPassenger(this).size() == 0){
-            System.out.println("You have no recieved offers");
+            output+="You have no recieved offers"+"\n";
             return false;
         }   
         for (int i = 0; i < SystemData.getInstance().getOffersOfPassenger(this).size(); i++) {
-            System.out.println("offer number " + (i + 1) + ": " + SystemData.getInstance().getOffersOfPassenger(this).get(i));
+            output+="offer number " + (i + 1) + ": " + SystemData.getInstance().getOffersOfPassenger(this).get(i) + "\n";
         }
         return true;
     }
@@ -106,12 +107,13 @@ public class Passenger implements IPassenger {
 
     @Override
     public boolean viewNotifications() {
+        String output="";
         if (notifications.size() == 0){
-            System.out.println("You have no notifications");
+            output+="You have no notifications"+"\n";
             return false;
         }     
         for(int i = 0 ; i < notifications.size() ; i++){
-            System.out.println((i+1) + ": " + notifications.get(i));
+            output+= (i+1) + ": " + notifications.get(i) + "\n";
         }
         return true;
     }

@@ -31,9 +31,10 @@ public class Admin implements IAdmin {
         //returns false if there are no requests, true otherwise.
         @Override
         public boolean listPendingRegistrations(){
+            String output="";
             if (SystemData.getInstance().displayAllRegistrations())
                 return true;
-            System.out.println("You have no pending requests.");
+            output+= "You have no pending requests."+"\n";
             return false;  
         }
 
