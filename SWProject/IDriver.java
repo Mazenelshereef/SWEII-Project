@@ -26,8 +26,6 @@ public interface IDriver extends ISuspendableUser {
     public void updateAverageRating();
     public double getBalance();
     public void addBalance(double amount);
-    public void setCurrentRide(IRide currentRide);
-    public IRide getCurrentRide();
     public void reachUserLocation(IRide ride);
     public void reachUserDistination(IRide ride);
 }
