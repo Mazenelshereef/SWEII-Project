@@ -36,6 +36,8 @@ public class RideOfferFacade {
             offer.setAccepted(true);
             offer.getItsDriver().addBalance(offer.getPrice());
             offer.getItsDriver().setCurrentRide(offer.getItsRide());
+            //offer.getItsDriver().reachUserLocation(offer.getItsRide());
+            //offer.getItsDriver().reachUserDistination(offer.getItsRide());
             return true;
         }
         return false;

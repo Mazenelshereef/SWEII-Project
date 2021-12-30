@@ -10,6 +10,7 @@ public class Offer implements IOffer {
         this.price = price;
         this.itsDriver = itsDriver;
         this.itsRide = itsRide;
+        this.itsRide.addEvent("Captain added a price", itsDriver.getPersonalInfo().getUsername());
     }
 
     @Override
@@ -50,6 +51,7 @@ public class Offer implements IOffer {
     @Override
     public void setAccepted(boolean isAccepted) {
         this.isAccepted = isAccepted;
+        this.itsRide.addEvent("user accepted the ride", itsRide.getItsPassenger().getPersonalInfo().getUsername());
     }
 
     @Override

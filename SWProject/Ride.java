@@ -1,11 +1,17 @@
 package SWProject;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class Ride implements IRide {
     private String source;
     private String destination;
     private int noOfPassengers;
     private IPassenger itsPassenger;
     private double price;
+    private ArrayList<String> events ;
+    private SimpleDateFormat formatTime ;
 
     public Ride(String source, String destination, int noOfPassengers, IPassenger itsPassenger) {
         this.source = source;
@@ -13,6 +19,13 @@ public class Ride implements IRide {
         this.noOfPassengers = noOfPassengers;
         this.itsPassenger = itsPassenger;
         this.price = -1;
+        events = new ArrayList<>() ;
+        formatTime = new SimpleDateFormat("hh.mm aa");
+    }
+
+    @Override
+    public ArrayList<String> getEvents() {
+        return events;
     }
 
     @Override
@@ -86,4 +99,9 @@ public class Ride implements IRide {
     public double getCost(double price) {
         return price;
     }
+    
+    public void addEvent(String eventName , String eventParticipants){
+        events.add(eventName + " , " +  formatTime.format(new Date()) + " , " + eventParticipants) ;
+    }
+
 }
