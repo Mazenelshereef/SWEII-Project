@@ -65,16 +65,17 @@ public class Passenger implements IPassenger {
     }
 
     @Override
-    public boolean checkOffers() {
+    public String checkOffers() {
         String output="";
-        if (SystemData.getInstance().getOffersOfPassenger(this).size() == 0){
-            output+="You have no recieved offers"+"\n";
-            return false;
-        }   
-        for (int i = 0; i < SystemData.getInstance().getOffersOfPassenger(this).size(); i++) {
-            output+="offer number " + (i + 1) + ": " + SystemData.getInstance().getOffersOfPassenger(this).get(i) + "\n";
+        ArrayList<IOffer> offers = SystemData.getInstance().getOffersOfPassenger(this);
+        if (offers.size() == 0){
+            output+="You have no recieved offers\n";
+            return output;
         }
-        return true;
+        for (int i = 0; i < offers.size(); i++) {
+            output+="offer number " + (i + 1) + ": " + offers.get(i) + "\n";
+        }
+        return output;
     }
 
     @Override
@@ -106,15 +107,14 @@ public class Passenger implements IPassenger {
     }
 
     @Override
-    public boolean viewNotifications() {
+    public String viewNotifications() {
         String output="";
         if (notifications.size() == 0){
-            output+="You have no notifications"+"\n";
-            return false;
+            output+="You have no notifications\n";
         }     
         for(int i = 0 ; i < notifications.size() ; i++){
             output+= (i+1) + ": " + notifications.get(i) + "\n";
         }
-        return true;
+        return output;
     }
 }

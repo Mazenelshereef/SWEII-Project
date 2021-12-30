@@ -188,11 +188,11 @@ public class Driver implements IDriver {
     }
 
     public void reachUserLocation(IRide ride){
-        ride.addEvent("Captain arrived to user location", this.getPersonalInfo().getUsername() + ride.getItsPassenger().getPersonalInfo().getUsername());
+        ride.addEvent("Captain arrived to user location", "Driver: " + this.getPersonalInfo().getUsername() + ", Passenger: " + ride.getItsPassenger().getPersonalInfo().getUsername());
     }
 
     public void reachUserDistination(IRide ride){
-        ride.addEvent("Captian arrived to user destination", this.getPersonalInfo().getUsername() + " " + ride.getItsPassenger().getPersonalInfo().getUsername());
+        ride.addEvent("Captian arrived to user destination", "Driver: " + this.getPersonalInfo().getUsername() + ", Passenger: " + ride.getItsPassenger().getPersonalInfo().getUsername());
         currentRide = null ;
     }
 

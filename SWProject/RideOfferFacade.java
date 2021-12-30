@@ -34,8 +34,10 @@ public class RideOfferFacade {
         if (offer.getItsRide().getItsPassenger().takeBalance(offer.getItsRide().getCost(offer.getPrice())))
         {
             offer.setAccepted(true);
+            offer.getItsRide().setPrice(offer.getPrice());
             offer.getItsDriver().addBalance(offer.getPrice());
             offer.getItsDriver().setCurrentRide(offer.getItsRide());
+            offer.getItsRide().addEvent("user accepted the ride", "Passenger: " + offer.getItsRide().getItsPassenger().getPersonalInfo().getUsername());
             //offer.getItsDriver().reachUserLocation(offer.getItsRide());
             //offer.getItsDriver().reachUserDistination(offer.getItsRide());
             return true;

@@ -1,7 +1,5 @@
 package SWProject;
 
-import java.util.ArrayList;
-
 public interface IRide {
     public void setSource(String source);
     public String getSource();
@@ -15,6 +13,6 @@ public interface IRide {
     public double getPrice();
     //public double getDiscount();
     public double getCost(double price);
-    public ArrayList<String> getEvents() ;
+    //public ArrayList<String> getEvents() ;
     public void addEvent(String eventName , String eventParticipants) ;
 }

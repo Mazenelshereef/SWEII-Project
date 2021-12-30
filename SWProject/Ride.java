@@ -11,7 +11,6 @@ public class Ride implements IRide {
     private IPassenger itsPassenger;
     private double price;
     private ArrayList<String> events ;
-    private SimpleDateFormat formatTime ;
 
     public Ride(String source, String destination, int noOfPassengers, IPassenger itsPassenger) {
         this.source = source;
@@ -19,13 +18,7 @@ public class Ride implements IRide {
         this.noOfPassengers = noOfPassengers;
         this.itsPassenger = itsPassenger;
         this.price = -1;
-        events = new ArrayList<>() ;
-        formatTime = new SimpleDateFormat("hh.mm aa");
-    }
-
-    @Override
-    public ArrayList<String> getEvents() {
-        return events;
+        events = new ArrayList<>();
     }
 
     @Override
@@ -101,7 +94,10 @@ public class Ride implements IRide {
     }
     
     public void addEvent(String eventName , String eventParticipants){
+        SimpleDateFormat formatTime  = new SimpleDateFormat("hh.mm aa");
         events.add(eventName + " , " +  formatTime.format(new Date()) + " , " + eventParticipants) ;
     }
+
+    public String getEvent(){return events.get(0);}
 
 }

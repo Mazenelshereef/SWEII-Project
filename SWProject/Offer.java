@@ -10,7 +10,7 @@ public class Offer implements IOffer {
         this.price = price;
         this.itsDriver = itsDriver;
         this.itsRide = itsRide;
-        this.itsRide.addEvent("Captain added a price", itsDriver.getPersonalInfo().getUsername());
+        this.itsRide.addEvent("Captain added a price", "Driver: " + itsDriver.getPersonalInfo().getUsername() + ", Price: " + price);
     }
 
     @Override
@@ -51,13 +51,12 @@ public class Offer implements IOffer {
     @Override
     public void setAccepted(boolean isAccepted) {
         this.isAccepted = isAccepted;
-        this.itsRide.addEvent("user accepted the ride", itsRide.getItsPassenger().getPersonalInfo().getUsername());
     }
 
     @Override
     public String toString() {
-        return "Offer [isAccepted=" + isAccepted + ", itsDriver=" + itsDriver.getPersonalInfo().getUsername() + ", price="
-                + price + "]";
+        return "Offer [ride= from\"" + itsRide.getSource() + "\" to \"" + itsRide.getDestination() + "\", itsDriver=" + itsDriver.getPersonalInfo().getUsername() + ", price="
+                + price + ", cost=" + itsRide.getCost(price) + ", isAccepted=" + isAccepted + "]";
     }
     
 }
